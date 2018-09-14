@@ -90,7 +90,7 @@ require(["conf/config"], function () {
                 }
             }($);
             $("#carousel_1").FtCarousel();  
-            // 加载主页图片
+            // 加载主页图片 数据
             var products =[];
             $.ajax({
                 type: "get",
@@ -135,6 +135,7 @@ require(["conf/config"], function () {
                     console.log("请求数据出错了la");
                 }
             })
+
             //导航详细信息显示
             $(".nav-list li,.nav-detail").hover(
                 function () {
@@ -189,6 +190,15 @@ require(["conf/config"], function () {
                 console.log("input");
                 $(".hint").show();
                 $(".m-search-box").addClass("input-bottom");
+                //假装请求有品的数据 实际来自百度 测试使用
+                $.ajax({
+                    url:`http://suggestion.baidu.com/?wd=${$(this).val()}`,
+                    dataType: "jsonp",
+                    success : function(data){
+                        console.log(data);
+                        
+                    }
+                })
                 $(".hint").on("click", "li", function () {
                     $(".m-search-input").val($(this).text());
                     $(".hint").hide();

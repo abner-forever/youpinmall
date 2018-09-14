@@ -1,0 +1,124 @@
+@import "../mixins/common";
+
+html{
+    body{
+        background-color: #F5F5F5;
+        .login-wrapper{
+            width: 854px;
+            height: 620px;
+            background-color: #fff;
+            margin: 80px auto 0;
+            .title{
+                padding: 50px 0 22px;
+                text-align: center;
+                .logo{
+                    width: 49px;
+                    height: 48px;
+                    display: inline-block;
+                    background: url(../../../images/mi_login.png);
+                }
+                h1{
+                    font-size: 30px;
+                    font-weight: normal;
+                    color: #424242;
+                    padding-top: 22px;
+                }
+            }
+            .login-box{
+                width: 358px;
+                height: 329px;
+                margin: 0 auto;
+                input{
+                    width: 326px;
+                    height: 22px;
+                    padding: 13px 16px 13px 14px;
+                    border:1px solid #E0E0E0;
+                    margin-bottom: 14px;
+                    outline: none;
+                    color: #333;
+                }
+                input[type=submit]{
+                    height: 50px;
+                    background-color: #ef5b00;
+                    text-align: center;
+                    color: #fff;
+                    width: 100%;
+                    border: none;
+                    padding: 0;
+                }
+                .login-hint{
+                    .login-phone{
+                        color: #ef5b00;
+                    }
+                    span{
+                        float: right;
+                        i{
+                            color: #E0E0E5;
+                        }
+                    }
+                }
+                fieldset{
+                    border: none;
+                    border-top: 1px solid #ccc;
+                    margin-top:30px;
+                    .other-login{
+                        text-align: center;
+                        margin: 0 auto;
+                    }
+                }
+                .other-type-link{
+                    a{
+                        width: 30px;
+                        height: 30px;
+                        display: inline-block;
+                        border-radius: 50%;
+                        margin: 0 12px;
+                        i{
+                          background: url(https://account.xiaomi.com/static/res/166d6dc/account-static/respassport/acc-2014/img/icons_type.png) no-repeat;
+                        }
+                    }
+                    .tencent{
+                        background: #0288d1 ;
+                        i{
+                            width: 18px;
+                            height: 18px;
+                            display: block;
+                            margin: 4px auto 0;
+                            background-position: -20px 0; 
+                        }
+                    }
+                    .sina{
+                        background: #d32f2f ;
+                        i{
+                            width: 18px;
+                            height: 18px;
+                            display: block;
+                            margin: 4px auto 0;
+                            background-position: -38px 0;
+                        }
+                    }
+                    .alipay{
+                        background: #0288d1 ;
+                        i{
+                            width: 25px;
+                            height: 18px;
+                            display: block;
+                            margin: 4px auto 0;
+                            background-position: -56px 0;
+                        }
+                    }
+                    .wechat{
+                        background: #00d20d ;
+                        i{
+                            width: 24px;
+                            height: 18px;
+                            display: block;
+                            margin: 5px auto 0;
+                            background-position: -83px 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

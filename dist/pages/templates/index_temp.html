@@ -182,52 +182,27 @@
                     <h2 class="h-subTit">小米众筹<span>永远好奇 永远年轻</span></h2>
                     <a href="">更多<i></i></a>
                 </div>
-                <div class="item-inner04">
-                    <div class="home-good-item">
-                        <div class="pro-text">
-                            <p class="pro-indo">新品最高立减30</p>
-                            <p class="pro-desc">焕新秋季 萌动来袭</p>
-                            <p class="pro-price"><i>¥</i>129 <i>起</i> </p>
+                <div class="item-inner-ypcrowd">
+                    <% for(var i=0;i<ypcrowd.data.items.length;i++){ %>
+                        <div class="item-inner0<%=i+4%>">
+                            <div class="home-good-item">
+                                <div class="pro-text">
+                                    <p class="pro-info"><%=ypcrowd.data.items[i].name%></p>
+                                    <p class="pro-desc"><%=ypcrowd.data.items[i].sumarry%></p>
+                                    <p class="pro-price"><i>¥</i><span><%=ypcrowd.data.items[i].price_min/100%></span><i>起</i> </p>
+                                </div>
+                                <img src="<%=ypcrowd.data.items[i].pic_url%>"class="pro-img">
+                            </div>
+                            <div class="m-progress-info">
+                                <span class="sup-num"><%=ypcrowd.data.items[i].saled_count%></span>&nbsp;人支持 <span class="common-tag-text" style="color:<%=ypcrowd.data.items[i].color%>"><%=ypcrowd.data.items[i].tags[0].name%></span>
+                                <span class="m-persent"><%=ypcrowd.data.items[i].progress%> <i>%</i> </span>
+                            </div>
                         </div>
-                        <img src="https://img.youpin.mi-img.com/800_pic/1eaa2c68092cb1c70a93e80974f8d9bb.png" alt=""
-                            class="pro-img">
-                    </div>
-                    <div class="m-progress-info">
-                        <span class="sup-num">11755</span>&nbsp;人支持 <span class="common-tag-text">爆</span>
-                        <span class="m-persent">587 <i>%</i> </span>
-                    </div>
-                </div>
-                <div class="item-inner05">
-                    <div class="home-good-item">
-                        <div class="pro-text">
-                            <p class="pro-indo">新品最高立减30</p>
-                            <p class="pro-desc">焕新秋季 萌动来袭</p>
-                        </div>
-                        <img src="https://img.youpin.mi-img.com/800_pic/5fbd5127c840d0a19dda91be133cd7c4.png" alt=""
-                            class="pro-img">
-                    </div>
-                    <div class="m-progress-info">
-                        <span class="sup-num">115</span>&nbsp;人支持 <span class="common-tag-text">爆</span>
-                        <span class="m-persent">587 <i>%</i> </span>
-                    </div>
-                </div>
-                <div class="item-inner06">
-                    <div class="home-good-item">
-                        <div class="pro-text">
-                            <p class="pro-indo">新品最高立减30</p>
-                            <p class="pro-desc">焕新秋季 萌动来袭</p>
-                        </div>
-                        <img src="https://img.youpin.mi-img.com/800_pic/3369e01fa3476262a2cae14854f1bd77.png" alt=""
-                            class="pro-img">
-                    </div>
-                    <div class="m-progress-info">
-                        <span class="sup-num">115</span>&nbsp;人支持 <span class="common-tag-text">爆</span>
-                            <span class="m-persent">587 <i>%</i> </span>
-                    </div>
+                    <%}%>
                 </div>
             </div>
         </div>
-        <!-- 每日新品 -->
+                <!-- 每日新品 -->
         <div class="h-section h-new-sec">
             <div class="container">
                 <div class="h-sec-top">
