@@ -1,0 +1,16 @@
+<script id="ypintro" type="text/html">
+    <%for(var i=0;i<ypintro.data.items.length;i++){%>
+        <a href="<%=ypintro.data.items[i].jump_url%>" target="_blank">
+            <div class="item-inner0<%=i+1%>">
+                <div class="home-good-item">
+                    <div class="pro-text">
+                        <p class="pro-info"><%=ypintro.data.items[i].title%></p>
+                        <p class="pro-desc"><%=ypintro.data.items[i].subtitle%></p>
+                    </div>
+                    <img src="<%=ypintro.data.items[i].pic_url%>"
+                        alt="" class="pro-img">
+                </div>
+            </div>
+        </a>
+    <%}%>
+</script>

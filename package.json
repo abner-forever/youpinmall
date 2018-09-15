@@ -4,6 +4,7 @@
   "description": "xiaomiyoupin",
   "main": "index.js",
   "dependencies": {
+    "art-template": "^4.13.0",
     "gulp": "^3.9.1"
   },
   "devDependencies": {

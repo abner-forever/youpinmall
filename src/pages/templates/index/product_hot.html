@@ -1,0 +1,23 @@
+<!-- 热门 -->
+<script id="product_hot" type="text/html">
+    <%for(var i=0;i<product_hot.data.items.length;i++){%>
+        <%if(i==product_hot.data.items.length-1){%>
+            <div class="m-goods-item-container m-goods-item-last">
+        <%}else{%>
+            <div class="m-goods-item-container">
+        <%}%>
+            <img src="<%=product_hot.data.items[i].imgs.img_square||product_hot.data.items[i].imgs.img800%>" alt="">
+            <div class="common-tag-con">
+                <%for(var j=0;j<product_hot.data.items[i].tags.length;j++){%>
+                    <span class="common-tag-text" style="background:<%=product_hot.data.items[i].tags[j].color%>"><%=product_hot.data.items[i].tags[j].name%></span>
+                <%}%>
+            </div>
+            <p class="pro-info"><%=product_hot.data.items[i].attr_ext.custom_name%></p>
+            <p class="pro-desc"><%=product_hot.data.items[i].attr_ext.custom_summary%></p>
+            <p class="pro-price">
+                <span class="pro-unit">¥</span>
+                <span class="m-num"><%=product_hot.data.items[i].market_price/100%></span>
+            </p>
+        </div>
+    <%}%>
+</script>

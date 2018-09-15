@@ -1,0 +1,27 @@
+<script id="ypcrowd" type="text/html">
+    <% for(var i=0;i<ypcrowd.data.items.length;i++){ %>
+         <a href="<%=ypcrowd.data.items[i].jump_url%>">
+             <div class="item-inner0<%=i+4%>">
+                 <div class="home-good-item">
+                     <div class="pro-text">
+                         <p class="pro-info"><%=ypcrowd.data.items[i].name%></p>
+                         <%if(i==0){%>
+                         <p class="pro-desc"><%=ypcrowd.data.items[i].summary%></p>
+                         <%}%>
+                         <p class="pro-price"><i>¥</i><span><%=ypcrowd.data.items[i].price_min/100%></span><i></i> </p>
+                     </div>
+                     <img src="<%=ypcrowd.data.items[i].pic_url%>"class="pro-img">
+                 </div>
+                 <div class="m-progress-info">
+                     <span class="sup-num"><%=ypcrowd.data.items[i].saled_count%></span>&nbsp;人支持 
+                     <%for(var j=0;j<ypcrowd.data.items[i].tags.length;j++) {%>
+                     <span class="common-tag-text" style="color:<%=ypcrowd.data.items[i].color%>">
+                         <%=ypcrowd.data.items[i].tags[j].name%>
+                     </span>
+                     <%}%>
+                     <span class="m-persent"><%=ypcrowd.data.items[i].progress%> <i>%</i> </span>
+                 </div>
+             </div>
+         </a>
+     <%}%>
+ </script>
