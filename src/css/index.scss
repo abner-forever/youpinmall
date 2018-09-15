@@ -177,6 +177,9 @@
     font-size: 13px;
     color: #666;
     cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .hint li:hover{
     color: #fff;
@@ -495,8 +498,12 @@
 .pro-desc{
     font-size: 16px;
     color: #999;
+    overflow:hidden; //超出的文本隐藏
+    text-overflow:ellipsis; //溢出用省略号显示
+    white-space:nowrap; //溢出不换行
 }
 /* 有品推荐结束 */
+
 /* 小米众筹开始 */
 .item-inner04{
     width: 537px;

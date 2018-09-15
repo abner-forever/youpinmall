@@ -37,6 +37,11 @@ html{
                     outline: none;
                     color: #333;
                 }
+                .err-tip{
+                    width: 100%;
+                    height: 20px;
+                    margin: 5px auto; 
+                }
                 input[type=submit]{
                     height: 50px;
                     background-color: #ef5b00;
@@ -62,11 +67,15 @@ html{
                     border-top: 1px solid #ccc;
                     margin-top:30px;
                     .other-login{
+                        font-size: 14px;
+                        color: #b0b0b0;
                         text-align: center;
                         margin: 0 auto;
                     }
                 }
                 .other-type-link{
+                    margin: 20px auto;
+                    text-align: center;
                     a{
                         width: 30px;
                         height: 30px;
@@ -84,7 +93,7 @@ html{
                             height: 18px;
                             display: block;
                             margin: 4px auto 0;
-                            background-position: -20px 0; 
+                            background-position: -19px 0; 
                         }
                     }
                     .sina{

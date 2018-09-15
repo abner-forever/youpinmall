@@ -82,21 +82,24 @@ require(["conf/config"], function () {
                             i.loop()
                         })
                     }
-                }, 
-                t.fn.FtCarousel = function (n) {
-                    return this.each(function () {
-                        new i(t(this), n)
-                    })
-                }
+                },
+                    t.fn.FtCarousel = function (n) {
+                        return this.each(function () {
+                            new i(t(this), n)
+                        })
+                    }
             }($);
-            $("#carousel_1").FtCarousel();  
+            $("#carousel_1").FtCarousel();
             // 加载主页图片 数据
-            var products =[];
+            var products = [];
             $.ajax({
                 type: "get",
-                //  url:"https://localhost:8080/proxy/youpin.mi.com/homepage/main/v1002?platform=pc",
-                url: "http://localhost:8080/ajax/json/indexdata.json",
+                url:"http://localhost:9000/v1002?platform=pc",
+                // url:"https://youpin.mi.com/homepage/main/v1002",
+                // url: "http://localhost:8080/ajax/json/indexdata.json",
                 dataType: "json",
+                /* jsonp : "platform",
+                jsonpCallback: 'pc', */
                 success: function (res) {
                     console.log(res);
                     var floors = res.data.homepage.floors;
@@ -115,8 +118,8 @@ require(["conf/config"], function () {
                     })
                     $(".item-inner-ypcrowd").html(crowdstr);
                     //拿到商品的数据从居家开始
-                    for(var i=0;i<floors.length;i++){
-                        if(i>8){
+                    for (var i = 0; i < floors.length; i++) {
+                        if (i > 8) {
                             products.push(floors[i]);
                         }
                     }
@@ -187,28 +190,35 @@ require(["conf/config"], function () {
 
             //输入框搜索
             $(".m-search-input").on("input", function () {
-                console.log("input");
                 $(".hint").show();
                 $(".m-search-box").addClass("input-bottom");
+
                 //假装请求有品的数据 实际来自百度 测试使用
                 $.ajax({
-                    url:`http://suggestion.baidu.com/?wd=${$(this).val()}`,
+                    type: "get",
+                    url: `http://suggestion.baidu.com/?wd=` + $(this).val(),
                     dataType: "jsonp",
-                    success : function(data){
-                        console.log(data);
-                        
+                    jsonp: "cb",
+                    success: function (data) {
+                        $(".hint ul").html("");
+                        data.s.forEach(item => {
+                            var li = document.createElement("li");
+                            li.innerText = item;
+                            $(".hint ul").append(li);
+                        });
+                        $(".hint ul").on("click", "li", function () {
+                            $(".m-search-input").val($(this).text());
+                            $(".hint").hide();
+                        });
+                    },
+                    error: function () {
+                        console.log("search error");
                     }
-                })
-                $(".hint").on("click", "li", function () {
-                    $(".m-search-input").val($(this).text());
-                    $(".hint").hide();
                 })
             })
             $(".m-search-input").blur(function () {
                 $(".m-search-box").removeClass("input-bottom");
             })
-
-
         })
     })
 })

@@ -4,6 +4,7 @@ let minifyCSS = require("gulp-clean-css");
 let imagemin = require("gulp-imagemin");
 let connect = require("gulp-connect");
 let sass = require("gulp-sass");
+let https = require("https");
 //定义一个build任务
 gulp.task("build", () => {
     //压缩JS文件
@@ -85,11 +86,11 @@ gulp.task("proxyserver",function(){
     var app = express();
     app.use(express.static('dist'));
     //请求http://localhost:8080/youpin.mi.com/homepage/main/v1002?platform=pc
-    app.use("/api/goodlist",function(req,res){
+    app.use("/v1002",function(req,res){
         let proxy = https.request({
             hostname : "youpin.mi.com",
-            path : "/product/shop_categories",
-            method:"post"
+            path : "/homepage/main",
+            method:"get"
         },(response)=>{
             response.pipe(res);
         });
@@ -98,11 +99,17 @@ gulp.task("proxyserver",function(){
         });
         proxy.end();
     });
-    var server = app.listen(8080,function(){
+    var server = app.listen(9000,function(){
         var host = server.address().address;
         var port = server.address().port;
 
         console.log('Example app listening at http://localhost',host,port);
         
     });
+
+    //添加监视器,监视所有文件的变化 ,执行相应任务
+    gulp.watch("./src/**/*.html", ["refreshHTML"]);
+    gulp.watch("./src/**/*.css", ['refreshCSS', 'refreshHTML']);
+    gulp.watch("./src/**/*.js", ['refreshJS', 'refreshHTML']);
+    gulp.watch("./src/**/*.scss", ['refreshSCSS', 'refreshHTML'])
 })
