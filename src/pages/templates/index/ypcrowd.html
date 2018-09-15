@@ -1,27 +1,36 @@
 <script id="ypcrowd" type="text/html">
-    <% for(var i=0;i<ypcrowd.data.items.length;i++){ %>
-         <a href="<%=ypcrowd.data.items[i].jump_url%>">
-             <div class="item-inner0<%=i+4%>">
-                 <div class="home-good-item">
-                     <div class="pro-text">
-                         <p class="pro-info"><%=ypcrowd.data.items[i].name%></p>
-                         <%if(i==0){%>
-                         <p class="pro-desc"><%=ypcrowd.data.items[i].summary%></p>
-                         <%}%>
-                         <p class="pro-price"><i>¥</i><span><%=ypcrowd.data.items[i].price_min/100%></span><i></i> </p>
-                     </div>
-                     <img src="<%=ypcrowd.data.items[i].pic_url%>"class="pro-img">
-                 </div>
-                 <div class="m-progress-info">
-                     <span class="sup-num"><%=ypcrowd.data.items[i].saled_count%></span>&nbsp;人支持 
-                     <%for(var j=0;j<ypcrowd.data.items[i].tags.length;j++) {%>
-                     <span class="common-tag-text" style="color:<%=ypcrowd.data.items[i].color%>">
-                         <%=ypcrowd.data.items[i].tags[j].name%>
-                     </span>
-                     <%}%>
-                     <span class="m-persent"><%=ypcrowd.data.items[i].progress%> <i>%</i> </span>
-                 </div>
-             </div>
-         </a>
-     <%}%>
+    <div class="container">
+            <div class="h-sec-top">
+                <h2 class="h-subTit">小米众筹<span>永远好奇 永远年轻</span></h2>
+                <a href="">更多<i></i></a>
+            </div>
+            <div class="item-inner-ypcrowd">
+                <% for(var i=0;i<ypcrowd.data.items.length;i++){ %>
+                    <a href="<%=ypcrowd.data.items[i].jump_url%>">
+                        <div class="item-inner0<%=i+4%>">
+                            <div class="home-good-item">
+                                <div class="pro-text">
+                                    <p class="pro-info"><%=ypcrowd.data.items[i].name%></p>
+                                    <%if(i==0){%>
+                                    <p class="pro-desc"><%=ypcrowd.data.items[i].summary%></p>
+                                    <%}%>
+                                    <p class="pro-price"><i>¥</i><span><%=ypcrowd.data.items[i].price_min/100%></span><i></i> </p>
+                                </div>
+                                <img src="<%=ypcrowd.data.items[i].pic_url%>"class="pro-img">
+                            </div>
+                            <div class="m-progress-info">
+                                <span class="sup-num"><%=ypcrowd.data.items[i].saled_count%></span>&nbsp;人支持 
+                                <%for(var j=0;j<ypcrowd.data.items[i].tags.length;j++) {%>
+                                <span class="common-tag-text" style="color:<%=ypcrowd.data.items[i].color%>">
+                                    <%=ypcrowd.data.items[i].tags[j].name%>
+                                </span>
+                                <%}%>
+                                <span class="m-persent"><%=ypcrowd.data.items[i].progress%> <i>%</i> </span>
+                            </div>
+                        </div>
+                    </a>
+                <%}%>
+            </div>
+        </div>
+    
  </script>

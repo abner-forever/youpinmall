@@ -722,6 +722,7 @@
     float: left;
     margin-right: 4px;
     cursor: pointer;
+    margin-bottom: 5px;
 }
 .m-product-item-container .m-product-item-last{
     margin-right: 0;
@@ -758,6 +759,13 @@
     font-size: 18px;
 }
 /* 居家结束 */
+/* 专属推荐 */
+.recommend-list{
+    height: auto;
+}
+.recommend-list .h-section{
+    height: auto;
+}
 
 /* 返回顶部 */
 .m-fixBar{
@@ -823,13 +831,16 @@
 }
 /* 底部 */
 .m-footer{
+    width: 100%;
+    height: 45px;
     padding: 45px 0;
     height: 45px;
     line-height: 23px;
     border-top: 1px solid #e7e7e7;
     background-color: #fff;
     color: #666;
-    margin-top: 90px; 
+    margin-top: 90px;
+    clear: both;
 }
 .m-footer .container{
     width: 1080px;

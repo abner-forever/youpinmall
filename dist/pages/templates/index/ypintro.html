@@ -1,16 +1,25 @@
 <script id="ypintro" type="text/html">
-    <%for(var i=0;i<ypintro.data.items.length;i++){%>
-        <a href="<%=ypintro.data.items[i].jump_url%>" target="_blank">
-            <div class="item-inner0<%=i+1%>">
-                <div class="home-good-item">
-                    <div class="pro-text">
-                        <p class="pro-info"><%=ypintro.data.items[i].title%></p>
-                        <p class="pro-desc"><%=ypintro.data.items[i].subtitle%></p>
+    <div class="container">
+        <div class="h-sec-top">
+            <h2 class="h-subTit">有品推荐<span>为您甄选 悦心购买</span></h2>
+            <a href="">更多<i></i></a>
+        </div>
+        <div class="item-inner-ypintro">
+            <%for(var i=0;i<ypintro.data.items.length;i++){%>
+                <a href="<%=ypintro.data.items[i].jump_url%>" target="_blank">
+                    <div class="item-inner0<%=i+1%>">
+                        <div class="home-good-item">
+                            <div class="pro-text">
+                                <p class="pro-info"><%=ypintro.data.items[i].title%></p>
+                                <p class="pro-desc"><%=ypintro.data.items[i].subtitle%></p>
+                            </div>
+                            <img src="<%=ypintro.data.items[i].pic_url%>"
+                                alt="" class="pro-img">
+                        </div>
                     </div>
-                    <img src="<%=ypintro.data.items[i].pic_url%>"
-                        alt="" class="pro-img">
-                </div>
-            </div>
-        </a>
-    <%}%>
+                </a>
+            <%}%>
+        </div>
+    </div>
+    
 </script>

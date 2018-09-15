@@ -107,26 +107,20 @@ require(["conf/config"], function () {
                     var floors = res.data.homepage.floors;
                     //拿有品推荐数据
                     var ypintro = floors[2];
-                    console.log(ypintro);
-
-                    $(".item-inner-ypintro").load("http://localhost:9000/pages/templates/index/ypintro.html",function(){
+                    $(".ypintro").load("http://localhost:9000/pages/templates/index/ypintro.html",function(){
                         var introstr = template("ypintro", {
                             ypintro: ypintro
                         })
-                        $(".item-inner-ypintro").html(introstr);
+                        $(".ypintro").html(introstr);
                     });
-
                     //拿到小米众筹数据
                     var ypcrowd = floors[3];
-                    console.log(ypcrowd);
-                    $(".item-inner-ypcrowd").load("http://localhost:9000/pages/templates/index/ypcrowd.html",function(){
+                    $(".ypcrowd").load("http://localhost:9000/pages/templates/index/ypcrowd.html",function(){
                         var crowdstr = template("ypcrowd", {
                             ypcrowd: ypcrowd
                         })
-                        $(".item-inner-ypcrowd").html(crowdstr);
+                        $(".ypcrowd").html(crowdstr);
                     });
-
-
                     //拿到新品数据
                     var product_new =floors[4];
                     $(".product-newlist").load("http://localhost:9000/pages/templates/index/product_new.html",function(){
@@ -135,7 +129,6 @@ require(["conf/config"], function () {
                         })
                         $(".product-newlist").html(product_newstr);
                     });
-
                     //拿到热门数据
                     var product_hot = floors[5];
                     $(".product-hotlist").load("http://localhost:9000/pages/templates/index/product_hot.html",function(){
@@ -144,7 +137,6 @@ require(["conf/config"], function () {
                         })
                         $(".product-hotlist").html(product_hotstr);
                     });
-                    
                     //拿到商品的数据从居家开始
                     for (var i = 0; i < floors.length; i++) {
                         if (i > 8) {
@@ -152,10 +144,19 @@ require(["conf/config"], function () {
                         }
                     }
                     $(".product-list").load("http://localhost:9000/pages/templates/index/productlist.html",function(){
-                        var htmlstr = template("productlist", {
+                        var productstr = template("productlist", {
                             products: products
                         })
-                        $(".product-list").html(htmlstr);
+                        $(".product-list").html(productstr);
+                    })
+                    //拿到专属推荐数据
+                    var exrecommend = res.data.recommend.floors[0].data;
+                    console.log(exrecommend);
+                    $(".recommend-list").load("http://localhost:9000/pages/templates/index/recommend.html",function(){
+                        var recommendstr = template("recommend", {
+                            recommend: exrecommend
+                        })
+                        $(".recommend-list").html(recommendstr);
                     })
 
                     //直接导入所有模板
@@ -169,9 +170,7 @@ require(["conf/config"], function () {
                         })
                         $(".home-wrap").html($(".home-wrap").html()+htmlstr);
 
-                    }) */
-
-                    
+                    }) */        
                 },
                 error: function () {
                     console.log("请求数据出错了la");

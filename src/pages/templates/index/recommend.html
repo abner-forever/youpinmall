@@ -1,0 +1,30 @@
+<script id="recommend" type="text/html">
+    <div class="h-section h-category-sec sec9">
+        <div class="container">
+            <div class="h-sec-top">
+                <h2 class="h-subTit">专属推荐</h2>
+            </div>
+            <div class="m-product-list">
+                <!-- products[i].data.items.length --> 
+                {{each recommend}}
+                <div class="m-product-item-container">
+                    <a href="{{$value.url}}" target="_blank">
+                        <div class="m-product-image">
+                            <img src="{{$value.imgs.img800}}"
+                                alt="">
+                            <p class="pro-desc">{{$value.summary}}</p>
+                        </div>
+                        <div class="common-tag-con">
+                        </div>
+                        <p class="pro-info">{{$value.name}}</p>
+                        <p class="pro-price">
+                            <span class="pro-unit">¥</span>
+                            <span class="m-num">{{$value.price/100}}</span>
+                        </p>
+                    </a>
+                </div>
+               {{/each}} 
+            </div>
+        </div>
+    </div>    
+</script>

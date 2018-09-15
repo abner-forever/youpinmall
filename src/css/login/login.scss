@@ -127,6 +127,16 @@ html{
                         }
                     }
                 }
+            }    
+        }
+        .footer{
+            text-align: center;
+            .lang-select-list{
+                height: 30px;
+                text-align: center
+            }
+            li{
+                display: inline-block;
             }
         }
     }
