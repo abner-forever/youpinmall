@@ -55,7 +55,10 @@
     background-color: #666;
 }
 /* 顶部结束 */
-
+.container{
+    width: 1080px;
+    margin: 0 auto;
+}
 /* 头部开始 */
 .m-header{
     width: 100%;
@@ -102,19 +105,20 @@
     line-height: 26px;
     margin-top: 10px;
     display: none;
+    cursor: pointer;
 }
 .nav-part span{
-    width: 30px;
+    width: 40px;
     height: 26px;
     font-size: 14px;
     float: left;
     text-align: center;
 }
 .nav-part i{
-    width: 30px;
-    height: 30px;
-    float: left;
-    background: url(../images/yp-icons.2bf57ccf.png) 0 -1662px no-repeat;
+    width: 20px;
+    height: 20px;
+    float: right;
+    background: url(../images/yp-icons.2bf57ccf.png) -8px -1663px no-repeat;
 }
 .m-tab-list ul{
     float: left;
@@ -571,7 +575,6 @@
 
 /* 每日新品开始 */
 .h-new-sec{
-    margin-top: 90px;
     background-color: #F5F5F5;
     height: 440px;
     padding: 50px 0 25px; 
@@ -609,6 +612,7 @@
     text-align: center;
     padding: 2px 0;
     height: 23px;
+    margin-top: 10px;
 }
 .common-tag-text{
     background-color: rgb(136, 188, 105);
@@ -617,6 +621,7 @@
     font-size: 16px;
     line-height: 22px;
     border-radius: 2px;
+    padding: 3px 5px;
 }
 .m-goods-item-container .pro-info{
     color: #333;
@@ -627,7 +632,7 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    padding: 0 0 0 10px;
+    text-align: center;
 }
 .m-goods-item-container .pro-desc{
     color: #666;

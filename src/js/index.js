@@ -100,6 +100,7 @@ require(["conf/config"], function () {
                 dataType: "json",
                 /* jsonp : "platform",
                 jsonpCallback: 'pc', */
+                async:false,
                 success: function (res) {
                     console.log(res);
                     var floors = res.data.homepage.floors;
@@ -117,6 +118,23 @@ require(["conf/config"], function () {
                         ypcrowd: ypcrowd
                     })
                     $(".item-inner-ypcrowd").html(crowdstr);
+                    //拿到新品数据
+                    var product_new =floors[4];
+                    var product_newstr = template("product_new", {
+                        product_new: product_new
+                    })
+                    $(".product-newlist").html(product_newstr);
+
+
+                    //拿到热门数据
+                    var product_hot = floors[5];
+                    var product_hotstr = template("product_hot", {
+                        product_hot: product_hot
+                    })
+                    $(".product-hotlist").html(product_hotstr);
+                    
+
+
                     //拿到商品的数据从居家开始
                     for (var i = 0; i < floors.length; i++) {
                         if (i > 8) {
