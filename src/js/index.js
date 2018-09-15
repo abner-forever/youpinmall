@@ -100,57 +100,59 @@ require(["conf/config"], function () {
                 dataType: "json",
                 /* jsonp : "platform",
                 jsonpCallback: 'pc', */
-                async:false,
                 success: function (res) {
                     console.log(res);
                     var floors = res.data.homepage.floors;
                     //拿有品推荐数据
                     var ypintro = floors[2];
                     console.log(ypintro);
-                    var introstr = template("ypintro", {
+                    /* var introstr = template("ypintro", {
                         ypintro: ypintro
                     })
-                    $(".item-inner-ypintro").html(introstr);
+                    $(".item-inner-ypintro").html(introstr); */
                     //拿到小米众筹数据
                     var ypcrowd = floors[3];
                     console.log(ypcrowd);
-                    var crowdstr = template("ypcrowd", {
+                    /* var crowdstr = template("ypcrowd", {
                         ypcrowd: ypcrowd
                     })
-                    $(".item-inner-ypcrowd").html(crowdstr);
+                    $(".item-inner-ypcrowd").html(crowdstr); */
+
                     //拿到新品数据
                     var product_new =floors[4];
-                    var product_newstr = template("product_new", {
+                   /*  var product_newstr = template("product_new", {
                         product_new: product_new
                     })
                     $(".product-newlist").html(product_newstr);
-
-
+ */
                     //拿到热门数据
                     var product_hot = floors[5];
-                    var product_hotstr = template("product_hot", {
+                    /* var product_hotstr = template("product_hot", {
                         product_hot: product_hot
                     })
                     $(".product-hotlist").html(product_hotstr);
-                    
-
-
+                     */
                     //拿到商品的数据从居家开始
                     for (var i = 0; i < floors.length; i++) {
                         if (i > 8) {
                             products.push(floors[i]);
                         }
                     }
-                    var htmlstr = template("productlist", {
+                    /* var htmlstr = template("productlist", {
                         products: products
                     })
-                    $(".product-list").html($(".product-list").html() + htmlstr);
-                    // $(".home-wrap").load("http://localhost:8080/pages/templates/index_temp.html",function(){
-                    //     console.log("temp");
-                    //     template("homewrap", {
-                    //         products: products
-                    //     })
-                    // })
+                    $(".product-list").html($(".product-list").html() + htmlstr); */
+                    //直接导入所有模板
+                    $(".home-wrap").load("http://localhost:9000/pages/templates/index_temp.html",function(){
+                        console.log("temp");
+                        template("homewrap", {
+                            ypintro:ypintro,
+                            ypcrowd :ypcrowd,
+                            product_new :product_new,
+                            product_hot:product_hot,
+                            products: products
+                        })
+                    })
                 },
                 error: function () {
                     console.log("请求数据出错了la");
