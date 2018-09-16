@@ -6,6 +6,7 @@ require.config({
     paths : {
         "jquery" : "https://cdn.bootcss.com/jquery/2.2.0/jquery.min",
         "idnex" : "/js/index",
+        "swiper" : "https://cdn.bootcss.com/Swiper/4.3.0/js/swiper.min"
         // "carousel":"/js/lib/ft-carousel.min",
         // "template":"/js/lib/template-web"
     }

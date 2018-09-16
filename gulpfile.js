@@ -90,7 +90,8 @@ gulp.task("proxyserver",function(){
         let proxy = https.request({
             hostname : "youpin.mi.com",
             path : "/homepage/main",
-            method:"get"
+            method:"get",
+            livereload :true
         },(response)=>{
             response.pipe(res);
         });
@@ -103,7 +104,7 @@ gulp.task("proxyserver",function(){
         var host = server.address().address;
         var port = server.address().port;
 
-        console.log('Example app listening at http://localhost9000');
+        console.log('Example app listening at http://localhost:9000');
         
     });
 

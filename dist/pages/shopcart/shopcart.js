@@ -1,0 +1,1 @@
+console.log("\u52A0\u8F7Dshopcart.js"),require(["../../js/conf/config"],function(){require(["jquery"],function(a){a(function(){a(".top").load("http://localhost:9000/pages/templates/index/top.html"),a(".header").load("http://localhost:9000/pages/templates/index/header.html")})})});

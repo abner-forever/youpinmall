@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="css/index.css">
     <!-- 显示图标 -->
     <link rel="shortcut icon" href="https://shop.io.mi-img.com/static/h5/favicon.ico?v=1111">
+    <!-- swiper插件 -->
+    <link href="https://cdn.bootcss.com/Swiper/4.3.0/css/swiper.min.css" rel="stylesheet">
     <!-- 主页js -->
     <script src="js/lib/template-web.js"></script>
-    <script data-main="js/index.js" src="js/conf/require.js"></script>
+    <script data-main="js/index.js" src="js/lib/require.js"></script>
 </head>
 
 <body>
@@ -20,8 +22,8 @@
             <div class="container">
                 <div class="fr">
                     <ul>
-                        <li><a href="#">登录</a></li>
-                        <li class="line"><a href="#">注册</a></li>
+                        <li><a href="pages/login/login.html">登录</a></li>
+                        <li class="line"><a href="pages/login/login.html">注册</a></li>
                         <li class="line"><a href="#">帮助中心</a></li>
                         <li class="download"><a href="#"><span></span>下载APP</a></li>
                     </ul>
@@ -49,7 +51,7 @@
 
                     </div>
                     <div class="m-search-form">
-                        <a class="m-icon-cart " href="javascript:;"></a>
+                        <a class="m-icon-cart " href="http://localhost:9000/pages/shopcart/shopcart.html"></a>
                         <div class="m-search-box">
                             <a class="m-icon-search" href="javascript:;"></a>
                             <input class="m-search-input" type="text" placeholder="鞋靴焕新 全场23元起">
@@ -81,42 +83,63 @@
                         <p class="nav-detail-title">有品推荐</p>
                         <ul class="nav-detail-list">
                             <li>
-                                <img src="http://img.youpin.mi-img.com/800_pic/c3c572d31db2e1531e4ad245b33885f1.png?t=webp"
-                                    alt="">
+                                <img src="http://img.youpin.mi-img.com/800_pic/c3c572d31db2e1531e4ad245b33885f1.png?t=webp">
                                 <span>每日上新</span>
                             </li>
                             <li>
-                                <img src="http://img.youpin.mi-img.com/800_pic/c3c572d31db2e1531e4ad245b33885f1.png?t=webp"
-                                    alt="">
+                                <img src="http://img.youpin.mi-img.com/800_pic/c3c572d31db2e1531e4ad245b33885f1.png?t=webp">
                                 <span>每日上新</span>
                             </li>
                             <li>
-                                <img src="http://img.youpin.mi-img.com/800_pic/c3c572d31db2e1531e4ad245b33885f1.png?t=webp"
-                                    alt="">
+                                <img src="http://img.youpin.mi-img.com/800_pic/c3c572d31db2e1531e4ad245b33885f1.png?t=webp">
                                 <span>每日上新</span>
                             </li>
                             <li>
-                                <img src="http://img.youpin.mi-img.com/800_pic/c3c572d31db2e1531e4ad245b33885f1.png?t=webp"
-                                    alt="">
+                                <img src="http://img.youpin.mi-img.com/800_pic/c3c572d31db2e1531e4ad245b33885f1.png?t=webp">
                                 <span>每日上新</span>
                             </li>
                             <li>
-                                <img src="http://img.youpin.mi-img.com/800_pic/c3c572d31db2e1531e4ad245b33885f1.png?t=webp"
-                                    alt="">
+                                <img src="http://img.youpin.mi-img.com/800_pic/c3c572d31db2e1531e4ad245b33885f1.png?t=webp">
+                                <span>每日上新</span>
+                            </li>
+                            <li>
+                                <img src="http://img.youpin.mi-img.com/800_pic/c3c572d31db2e1531e4ad245b33885f1.png?t=webp">
+                                <span>每日上新</span>
+                            </li>
+                            <li>
+                                <img src="http://img.youpin.mi-img.com/800_pic/c3c572d31db2e1531e4ad245b33885f1.png?t=webp">
+                                <span>每日上新</span>
+                            </li>
+                            <li>
+                                <img src="http://img.youpin.mi-img.com/800_pic/c3c572d31db2e1531e4ad245b33885f1.png?t=webp">
+                                <span>每日上新</span>
+                            </li>
+                            <li>
+                                <img src="http://img.youpin.mi-img.com/800_pic/c3c572d31db2e1531e4ad245b33885f1.png?t=webp">
+                                <span>每日上新</span>
+                            </li>
+                            <li>
+                                <img src="http://img.youpin.mi-img.com/800_pic/c3c572d31db2e1531e4ad245b33885f1.png?t=webp">
                                 <span>每日上新</span>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="banner-box">
-                    <div class="ft-carousel" id="carousel_1">
-                        <ul class="carousel-inner">
-                            <li class="carousel-item"><img src="images/img (1).jpg"></li>
-                            <li class="carousel-item"><img src="images/img (2).jpg"></li>
-                            <li class="carousel-item"><img src="images/img (3).jpg"></li>
-                            <li class="carousel-item"><img src="images/img(4).jpg"></li>
-                            <li class="carousel-item"><img src="https://shop.io.mi-img.com/app/shop/img?id=shop_05d18e0141948a14a997fb6add00f8a5.jpeg&w=1080&h=450"></li>
-                        </ul>
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><img src="images/img (1).jpg"></div>
+                            <div class="swiper-slide"><img src="images/img (2).jpg"></div>
+                            <div class="swiper-slide"><img src="images/img (3).jpg"></div>
+                            <div class="swiper-slide"><img src="images/img(4).jpg"></div>
+                            <div class="swiper-slide"><img src="images/img(5).jpg"></div>
+                        </div>
+                       <!-- 如果需要分页器 -->
+                        <div class="swiper-pagination"></div>
+                        
+                        <!-- 如果需要导航按钮 -->
+                        <div class="carousel-prev-btn"></div>
+                        <div class="carousel-next-btn"></div>
                     </div>
                 </div>
             </div>
@@ -150,11 +173,11 @@
         </div>
         <!-- 有品推荐 -->
         <div class="h-section ypintro">
-            
+
         </div>
         <!-- 小米众筹 -->
         <div class="h-section ypcrowd">
-            
+
         </div>
 
         <!-- 每日新品 -->
@@ -168,8 +191,8 @@
                     <div class="swarp-container product-newlist">
 
                     </div>
-                    <span class="carousel-btn carousel-prev-btn"></span>
-                    <span class="carousel-btn carousel-next-btn"></span>
+                    <span class="carousel-prev-btn"></span>
+                    <span class="carousel-next-btn"></span>
                 </div>
             </div>
         </div>
@@ -191,9 +214,9 @@
         </div>
         <div class="product-list">
             <!-- 服饰 手机 所有商品 -->
-            
+
         </div>
-        <div class="recommend-list">
+        <div class="recommend-list clearfix">
 
         </div>
         <!-- 返回顶部 -->
@@ -252,4 +275,5 @@
         </div>
     </div>
 </body>
+
 </html>

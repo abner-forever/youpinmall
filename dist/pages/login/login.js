@@ -1,0 +1,1 @@
+console.log("\u52A0\u8F7Dlogin.js"),require(["../../js/conf/config"],function(){require(["jquery"],function(a){a(function(){a(".login-phone").on("click",function(){console.log("login"),a(".login-box").hide(),a(".register-box").show()}),a(".user-password").on("click",function(){console.log("login"),a(".register-box").hide(),a(".login-box").show()})})})});

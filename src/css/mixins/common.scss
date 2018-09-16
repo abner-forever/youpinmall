@@ -18,9 +18,7 @@ i{
     font-style: normal
 }
 .clearfix::after, .clearfix::before{
-    width: 0;
-    height: 0;
-    /* overflow: hidden; */
     content: '';
-    display: table
+    display: block;
+    clear: both;
 }

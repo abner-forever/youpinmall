@@ -1,0 +1,10 @@
+console.log("加载shopcart.js");
+require(["../../js/conf/config"],function(){
+    require(["jquery"],function($){
+        $(function(){
+            //加载页面
+            $(".top").load("http://localhost:9000/pages/templates/index/top.html")
+            $(".header").load("http://localhost:9000/pages/templates/index/header.html")
+        })
+    })
+})
