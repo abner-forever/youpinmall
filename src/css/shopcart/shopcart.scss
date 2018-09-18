@@ -1,5 +1,9 @@
 @import "../mixins/common";
 
+body{
+    font-size: 14px;
+    color: #333;
+}
 .goods{
     width: 100%;
     border-top: 1px solid #e7e7e7;
@@ -7,6 +11,7 @@
 .goods .container{
     width: 1080px;
     margin: 0 auto;
+    padding-bottom: 100px;
     .top-title{
         padding: 30px 0;
     }
@@ -15,22 +20,222 @@
             background-color: #FAFAFA;
             height: 40px;
             line-height: 40px;
-            a.checkall{
-                width: 18px;
-                height: 18px;
-                border-radius: 50%;
-                border:1px solid #ccc;
-                display: inline-block;
-                vertical-align: middle;
+        }
+        a.checkall{
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border:2px solid #ccc;
+            vertical-align: middle;
+            line-height: 100%;
+            margin: 8px;
+            display: inline-block;
+        }
+        ul{
+            float: right;
+            margin-right: 10px; 
+            li{
+                color: #999;
+                font-size: 14px;
+                float: left;
             }
-            ul{
-                float: right;
+            .all{
+                width: 130px;
+            }
+            .product{
+                width: 325px;
+            }
+            .price{
+                width: 205px;
+            }
+            .num{
+                width: 208px;
+            }
+            .total{
+                width: 129px;
+            }
+        }
+        .goods-merchant{
+            width: 1080px;
+            .goods-type{
+                padding: 47px 0 17px 0;
+            }
+            .goods-detail{
+                height: 142px;
+                border-top: 1px solid #ccc;
+                border-bottom: 1px solid #ccc;
+                padding: 27px 0; 
+                ul{
+                    width: 1080px;
+                    line-height: 142px;
+                }
+                li img{
+                    height: 120px;
+                    width: 120px;
+                    vertical-align: middle;
+                }
                 li{
-                    float: left;
-                   padding: 0 50px; 
+                    text-align: center;
+                }
+                li.checkall{
+                    width: 40px;
+                    margin-left: 10px;
 
+                }
+                li.product{
+                    text-align: left;
+                    width: 290px;
+                }
+                .num{
+                    // padding-top: 55px; 
+                    .count-box{
+                        display: inline-block;
+                        width: 134px;
+                        height: 30px;
+                        border: 1px solid #ccc;
+                        line-height: 30px;
+                        span{
+                            width: 30px;
+                            height: 30px;
+                            float: left;
+                            cursor: pointer;
+                        }
+                        span.text{
+                            cursor: default;
+                            width: 72px;
+                            border-left: 1px solid #ccc; 
+                            border-right: 1px solid #ccc; 
+                        }
+                    }
+                }
+                li.total{
+                    color: #c00000;
+                }
+                li.edit{
+                    margin-left:60px; 
+                    a{
+                        width: 13px;
+                        height: 13px;
+                        display: inline-block;
+                        background: url(../../../images/yp-icons.2bf57ccf.png) 0 -119px no-repeat;
+                    }
+                    a:hover{
+                        background-position: 0 -102px;
+                    }
+                }
+            }
+            .delete-box{
+                position: fixed;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 99;
+                background: rgba($color: #000000, $alpha: .4);
+                display: none;
+                .select{
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    width: 430px;
+                    height: 250px;
+                    margin-top: -125px;
+                    margin-left: -215px;
+                    background: #fff;
+                    text-align: center;
+                    .close-box{
+                        width: 13px;
+                        height: 13px;
+                        background: url(../../../images/yp-icons.2bf57ccf.png) 0 -119px no-repeat;
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        cursor: pointer;
+                    }
+                    .close-box:hover{
+                        background-position: 0 -102px;
+                    }
+                    p{
+                        font-size: 20px;
+                        text-align: center;
+                        padding: 80px 0;
+                    }
+                    a{
+                        display: inline-block;
+                        width: 97px;
+                        height: 43px;
+                        line-height: 43px;
+                        border-radius: 3px;
+                        text-align: center;
+                        margin: 0 10px;
+                    }
+                    a.affirm{
+                        color: #fff;
+                        background-color: #845f3f;
+                        border-color: #845f3f;
+                    }
+                    a.affirm:hover{
+                       opacity: .5;
+                    }
+                    a.cancel{
+                        color: #666;
+                        border: 1px solid #666;
+                    }
+                    a.cancel:hover{
+                        color: #fff;
+                        background-color: #845f3f;
+                        border-color: #845f3f;
+                    }
                 }
             }
         }
+    }
+}
+.cart-total{
+    width: 100%;
+    height: 80px;
+    margin: 0 auto 80px;
+    position: relative;
+    .container{
+        width: 1080px;
+        background-color: #FAFAFA;
+    }
+    .ico, .fl{
+        height: 30px;
+        padding: 25px 0;
+        float: left;
+        span{
+            margin: 0 10px;
+            font-size: 18px;
+        }
+    }
+    .select-icon{
+        width: 18px;
+        height: 18px;
+        background-position: 0 -490px; 
+        margin: 0 20px;
+    }
+    .totol-price-con{
+        position: absolute;
+        right: 220px;
+        line-height: 80px;
+        font-size: 20px;
+        .total-after-prefer{
+            color: #c00000;
+            span{
+                color: #333;
+            }
+        }
+    }
+    .checkout{
+        float: right;
+        width: 200px;
+        height: 80px;
+        background-color: #E7E7E7;
+        line-height: 80px;
+        text-align: center;
+        font-size: 20px;
+        color: #fff;
+        cursor: not-allowed;
     }
 }

@@ -1,0 +1,35 @@
+<script id="shoplist" type="text/html">
+    {{each shoplist}}
+    <div class="goods-merchant">
+        <div class="goods-type">
+            <a href="" class="checkall"></a>
+            <span>小米/米家自营</span>
+        </div>
+        <div class="goods-detail">
+            <ul>
+                <li class="checkall"><a href="" class="checkall"></a></li>
+                <li><img src="{{$value.imgurl}}"></li>
+                <li class="product">{{$value.name}}</li>
+                <li class="price">¥<span>{{$value.price}}</span></li>
+                <li class="num">
+                    <div class="count-box">
+                        <span class="reduce-num">-</span>
+                        <span class="text">{{$value.count}}</span>
+                        <span class="add-num">+</span>
+                    </div>
+                </li>
+                <li class="total">¥<span>{{$value.price*$value.count}}</span></li>
+                <li class="edit"><a href="javascript:;"></a></li>
+            </ul>
+        </div>
+        <div class="delete-box">
+            <div class="select">
+                <span class="close-box"></span>
+                <p>确认要删除吗</p>
+                <a class="affirm" href="javascript:;">确认</a>
+                <a class="cancel" href="javascript:;">取消</a>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</script>

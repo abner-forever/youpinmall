@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>购物车</title>
     <link rel="shortcut icon" href="https://shop.io.mi-img.com/static/h5/favicon.ico?v=1111">
+    <script src="../../js/lib/template-web.js"></script>
     <script data-main="shopcart.js" src="../../js/lib/require.js"></script>
     <link rel="stylesheet" href="../../css/index.css">
     <link rel="stylesheet" href="../../css/shopcart/shopcart.css">
@@ -25,42 +26,42 @@
                         <a href="" class="checkall"></a>
                         <ul>
                             <li class="all">全选</li>
-                            <li class="">商品信息</li>
-                            <li>单价</li>
-                            <li>数量</li>
-                            <li>金额</li>
-                            <li>操作</li>
+                            <li class="product">商品信息</li>
+                            <li class="price">单价</li>
+                            <li class="num">数量</li>
+                            <li class="total">金额</li>
+                            <li class="edit">操作</li>
                         </ul>
                     </div>
                     <div class="goods-list">
                         <!-- 单个商品 -->
-                        <div class="goods-one">
-                            <div class="goods-type">
-                                <a href="" class="checkstatus"></a>
-                                <span>小米/米家自营</span>
-                            </div>
-                            <div class="goods-detail">
-                                <a href="" class="checkstatus"></a>
-                                <ul>
-                                    <li><img src="" ></li>
-                                    <li class="goods-name">保温杯白色</li>
-                                    <li class="goods-single-price">¥<span>99</span></li>
-                                    <li class="goods-count">
-                                        <div class="count-box">
-                                            <span>-</span>
-                                            <input type="text" class="counts">
-                                            <span>+</span>
-                                        </div>
-                                    </li>
-                                    <li class="goods-all-price">¥<span>99</span></li>
-                                    <li class="goods-operate">X</li>
-                                </ul>
-                                
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <!-- 订单结算 -->
+        <div class="cart-total">
+            <div class="container">
+                <div class="cart-total bottom-total fixed-to-bottom">
+                    <div class="ico fl">
+                        <a class="m-icons m-icons-check select-icon" data-src="" href="javascript:;"></a>
+                        <span class="select-text">全选</span>
+                        <span class="already-select">已选0件</span>
+                    </div>
+                    <div class="totol-price-con no-reduce">
+                        <span class="total-after-prefer">
+                            <span>合计：</span>￥0.00
+                        </span>
+                    </div>
+                    <span class="checkout disable fr">去结算</span>
+                </div>
+            </div>
+        </div>
+        <!-- 脚部 -->
+        <div class="footer">
+
         </div>
     </div>
 </body>

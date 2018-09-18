@@ -12,6 +12,7 @@
     width: 1080px;
     height: 48px;
     margin: 0 auto;
+    background-color: #333;
 }
 .fr ul{
     float: right;
@@ -190,6 +191,9 @@
     background-color: #845f3f;
 
 }
+.shop-cart{
+    position: relative;
+}
 .m-icon-cart {
     width: 30px;
     height: 30px;
@@ -200,6 +204,19 @@
 }
 .m-icon-cart:hover {
     background: url(../images/yp-icons.2bf57ccf.png) 0 -1188px no-repeat;    
+}
+.m-cart-news{
+    position: absolute;
+    right: -6px;
+    top: 9px;
+    width: 21px;
+    border-radius: 8px;
+    line-height: 17px;
+    display: block;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    background-color: #c00000;
 }
 /* 头部结束 */
 

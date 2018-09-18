@@ -1,0 +1,342 @@
+@import "../mixins/common.scss";
+.detail{
+    width: 100%;
+    .container{
+        width: 1080px;
+    }
+    .detail-header{
+        height: 565px;
+        margin-bottom: 67px;
+        padding-top: 60px;
+        .banner{
+            width: 465px;
+            height: 433px;
+            float: left;
+            margin-right: 46px;
+            position: relative;
+            .main{
+                width: 368px;
+                height: 433px;
+                background-color: #DEE1E9;
+                img{
+                    width: 368px;
+                    height: 433px;
+                    position: absolute;
+                    display: none;
+                }
+                img.first{
+                    display: block;
+                }
+            }
+            .thumb{
+                width: 85px;
+                height: 100%;
+                position: relative;
+                .thumb-container{
+                    height: 431px;
+                    overflow: hidden;
+                    .thumb-pic{
+                        position: relative;
+                        width: 83px;
+                        height: 98px;
+                        border: 1px solid transparent;
+                        margin-bottom: 11px;
+                        background-color: #dee1e9;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    .thumb-pic-active{
+                        border-color: #845F3F;
+                    }
+                }
+                .thumb-arrow{
+                    display: none;
+                }
+                .thumb-arrow-up{
+                    width: 85px;
+                    height: 16px;
+                    position: absolute;
+                    top: 0;
+                    background: url(../../../images/yp-icons.2bf57ccf.png) 0 -275px no-repeat;
+                }
+                .thumb-arrow-down{
+                    width: 85px;
+                    height: 16px;
+                    position: absolute;
+                    bottom: 0;
+                    background: url(../../../images/yp-icons.2bf57ccf.png) 0 -176px no-repeat;
+                }
+                .thumb-container:hover .thumb-arrow{
+                    display: block;
+                }
+            }
+        }
+        .sku-container{
+            width: 561px;
+            .name{
+                margin-bottom: 4px;
+                .good-name{
+                    vertical-align: middle;
+                    line-height: 26px;
+                    font-size: 20px;
+                    color: #333;
+                }
+            }
+            .summary{
+                font-size: 12px;
+                line-height: 18px;
+                color: #999;
+                width: 84%;
+            }
+            .sku-title{
+                margin-right: 10px;
+                width: 48px;
+                float: left;
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 32px;
+                vertical-align: bottom;
+            }
+            .card{
+                margin-bottom: 26px;
+                margin-top: 18px;
+                padding: 10px;
+                background-color: #f9f9f9;
+                .price-line{
+                    margin-top: 12px;
+                    margin-bottom: 12px;
+                    height: 37px;
+                    overflow: hidden;
+                    vertical-align: bottom;
+                    line-height: 40px;
+                    font-size: 30px;
+                    .price{
+                        color: #c00000;
+                        line-height: 30px;
+                        overflow: hidden;
+                    }
+                    .money-symbol{
+                        margin-right: 3px;
+                        font-size: 14px;
+                        vertical-align: 0;
+                        font-size: 14px;
+                    }
+                    .value{
+                        font-size: 30px;
+                        vertical-align: 0;
+                    }
+                    .market-price{
+                        margin-left: 14px;
+                        font-size: 12px;
+                        vertical-align: 0;
+                        text-decoration: line-through;
+                        color: #ccc;
+                    }
+                    .m-sale-tag{
+                        height: 20px;
+                        line-height: 20px;
+                        padding: 0 6px;
+                        margin-left: 8px;
+                        background-color: #c00000;
+                        color: #fff;
+                        font-size: 12px;
+                        vertical-align: 2px;
+                        border-radius: 2px;
+                        display: inline-block;
+                    }
+                }
+                .service-line{
+                    margin-bottom: 12px;
+                    vertical-align: bottom;
+                    line-height: 24px;
+                    .sku-title{
+                        margin-right: 10px;
+                        width: 48px;
+                        float: left;
+                        font-size: 12px;
+                        font-weight: 400;
+                        line-height: 32px;
+                        vertical-align: bottom;
+                    }
+                    p.icon{
+                        float: left;
+                        box-sizing: border-box;
+                        margin-top: 9px;
+                        border: 1px solid #c00000;
+                        border-radius: 50%;
+                        width: 12px;
+                        height: 12px;
+                        line-height: 12px;
+                        text-align: center;
+                        font-size: 10px;
+                        color: #c00000;
+                        margin-left: -30px;
+                        cursor: pointer;
+                    }
+                    .service{
+                        .service-item{
+                            float: left;
+                            overflow: hidden;
+                            height: 24px;
+                            margin-right: 13px;
+                            line-height: 24px;
+                            font-size: 16px;
+                            .service-item-text{
+                                margin-left: 8px;
+                                line-height: 16px;
+                            }
+                        }
+                        .m-icons-service {
+                            width: 16px;
+                            height: 16px;
+                            background-position: 0 -215px;
+                            vertical-align: middle;
+                        }
+                    }
+                }
+            }
+            .address-line{
+                overflow: hidden;
+                padding: 0 10px 26px;
+                .sku-title{
+                    line-height: 16px;
+                }
+                .address{
+                    font-size: 14px;
+                    float: left;
+                    line-height: 14px;
+                    margin-right: 10px;
+                    font-weight: 400;
+                }
+            }
+            .size-line{
+                margin-bottom: 14px;
+                .size-container {
+                    margin-bottom: -14px;
+                    float: left;
+                    width: 473px;
+                    overflow: hidden;
+                    .tag-item-onSaled{
+                        padding: 4px 20px;
+                        border: 1px solid #ccc;
+                        border-radius: 3px;
+                        float: left;
+                        margin-right: 20px;
+                        background-color:#fff;
+                        margin-bottom: 14px;
+                        cursor: pointer;
+                        font-size: 14px;
+                        color: #333;
+                        line-height: 22px;
+                    }
+                    .tag-item-onSaled-active{
+                        border-color: #845F3F;
+                    }
+                }
+            }
+            .count-line{
+                margin-bottom: 40px; 
+                .minus-btn{
+                    width: 30px;
+                    height: 30px;
+                    float: left;
+                    border: 1px solid #ccc;
+                }
+                .m-icons-reduce{
+                    background-position: 0 -1390px;
+                }
+                .m-icons-add-active{
+                    background-position: 0 -1050px;
+                }
+                input{
+                    width: 60px;
+                    height: 30px;
+                    border: 1px solid #ccc;
+                    border-left: 0;
+                    border-right: 0;
+                    float: left;
+                    text-align: center;
+                    outline: none;
+                    font-weight: 700;
+                    color: #333;
+                }
+            }
+            .btn-line{
+                height: 52px;
+                .buy-btn-container{
+                    float: left;
+                    .m-btn-middle{
+                        min-width: 167px;
+                        height: 50px;
+                        line-height: 50px;
+                        font-size: 20px;
+                        float: left;
+                        text-align: center;
+                        padding: 0 6px;
+                        margin-right: 15px;
+                        border-radius: 2px;
+                        transition: all .5s;
+                    }
+                    .m-btn-brown-stroke{
+                        color: #845f3f;
+                        border-color: #845f3f;
+                        border: 1px solid #666;
+                    }
+                    .m-btn-brown-stroke:hover{
+                        color: #fff;
+                        background-color: #845f3f;
+                    }
+                    .m-btn-brown{
+                        color: #fff;
+                        background-color: #845f3f;
+                    }
+                    .m-btn-brown:hover{
+                        opacity: .5;
+                    }
+                }
+                .favor-btn{
+                    float: left;
+                    width: 50px;
+                    height: 50px;
+                    border: 1px solid #ccc;
+                    border-radius: 2px;
+                    color: #999;
+                    line-height: 12px;
+                    text-align: center;
+                    font-size: 12px;
+                    .m-icons-collection{
+                        width: 30px;
+                        height: 30px;
+                        background-position: 0 -880px;
+                    }
+                }
+                .favor-btn:hover{
+                    color: #fff;
+                    background-color: #845f3f;
+                    .m-icons-collection{
+                        background-position: 0 -1695px;
+                    }
+                }
+                .favor-service-btn{
+                    margin-left: 15px;
+                    .m-icons-service-detail {
+                        width: 30px;
+                        height: 30px;
+                        background-position: 0 -1560px;
+                    }
+                    
+                }
+                .favor-service-btn:hover{
+                    color: #fff;
+                    background-color: #845f3f;
+                    .m-icons-service-detail{
+                        background-position: 0 -1527px;
+                    }
+                }
+            }
+        }
+    }
+    
+}
