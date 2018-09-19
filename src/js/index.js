@@ -1,24 +1,61 @@
 console.log("加载了有品的index.js");
 
 require(["conf/config"], function () {
-    require(["jquery", "swiper","common"], function ($, Swiper,common) {
+    require(["jquery", "swiper", "common"], function ($, Swiper, common) {
         $(function () {
             //加载购物车cookie
             var list = [];
+            let userlist = [];
             var liststr = common.getCookie("list");
-            console.log(liststr);
+            let userstr = common.getCookie("userlist");
             if (liststr) {
-                var list = JSON.parse(liststr); //将cookie转换成数组
+                list = JSON.parse(liststr); //将cookie转换成数组
                 console.log("cookie 存在");
             }
+            if (userstr) {
+                userlist = JSON.parse(userstr);
+                console.log(userlist);
+                console.log("用户cookie存在");
+
+            }
+
             var totalcount = 0;
             $.each(list, function (index, value) {
                 totalcount += value.count;
             })
 
             //加载公共部分
-            $(".top").load("http://localhost:9000/pages/templates/index/top.html")
-            $(".header").load("http://localhost:9000/pages/templates/index/header.html", function () {
+            $(".top").load("/pages/templates/index/top.html", function () {
+
+                //判断是否登录
+                if (userstr) {
+                    console.log("yes");
+                    $(".haslog").show();
+                    $(".unlog").hide();
+                    $(".user-center").mouseenter(function () {
+                        $(".user-drop").slideToggle("fast","linear");
+                    })
+                    $(".user-center").mouseleave(function () {
+                        $(".user-drop").hide();
+                    })
+                    $(".my-order").on("click", function () {
+                        window.open("/pages/personal/personal.html");
+                    })
+                    //退出登录
+                    $(".logout").click(function () {
+                        console.log("out"); 
+                        var d = new Date();
+                        d.setDate(d.getDate() - 999);
+                        document.cookie = "userlist=" + userstr + ";expires=" + d + ";path=/";
+                        window.location.href="/";
+                    })
+                } else {
+                    $(".haslog").hide();
+                    $(".unlog").show();
+                }
+
+            })
+            $(".header").load("/pages/templates/index/header.html", function () {
                 //输入框搜索
                 $(".m-search-input").on("input", function () {
                     $(".hint").show();
@@ -56,7 +93,7 @@ require(["conf/config"], function () {
                     $(".m-cart-news").text(totalcount);
                 }
             })
-            $(".footer").load("http://localhost:9000/pages/templates/index/footer.html")
+            $(".footer").load("/pages/templates/index/footer.html")
 
             //轮播图插件
             var mySwiper = new Swiper('.swiper-container', {
@@ -144,26 +181,26 @@ require(["conf/config"], function () {
                     //跳转详情页
                     $("body").on("click", ".m-product-item-container", function () {
                         // var gid = $(this).attr("data-src");
-                        var detail =[];
+                        var detail = [];
                         var name = $(this).find(".pro-info").text();
                         var price = $(this).find(".pro-price").find(".m-num").text();
                         var imgurl = $(this).find(".m-product-image").find("img").attr("src");
                         var summary = $(this).find(".m-product-image").find(".pro-desc").text();
                         console.log(summary);
-                        
-                        console.log(name,price,imgurl);
-                        
-                        var obj={
-                            "name":name,
-                            "price":price,
-                            "imgurl":imgurl,
-                            "summary":summary
+
+                        console.log(name, price, imgurl);
+
+                        var obj = {
+                            "name": name,
+                            "price": price,
+                            "imgurl": imgurl,
+                            "summary": summary
                         }
                         detail.pop();
                         detail.push(obj);
                         var str = JSON.stringify(detail);
                         document.cookie = "detail=" + str + ";path=" + "/";
-                        window.open("pages/detail/mi8.html","_blank");
+                        window.open("pages/detail/detail.html", "_blank");
 
                     })
                 },

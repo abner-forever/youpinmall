@@ -17,20 +17,19 @@
 .fr ul{
     float: right;
 }
-.fr ul li {
+.fr>ul>li {
     float: left;
     line-height: 48px;
     padding-left: 12px; 
     position: relative;
     font-size: 14px;
 }
-.fr ul li span{
+.unlog{
     display: inline-block;
-    width: 30px;
-    height: 30px;
-    background: url(../images/yp-icons.2bf57ccf.png) 0 -1015px no-repeat;
+    background: url(../images/yp-icons.2bf57ccf.png) 0 -1007px no-repeat;
     position: relative;
-    top: 9px;
+    padding-left: 30px;
+    line-height: 48px; 
 }
 .fr ul li a{
     color: #E7E7E7;
@@ -54,6 +53,68 @@
     top: 17px;
     display: block;
     background-color: #666;
+}
+li.user-center{
+    position: relative;
+}
+a.big-head{
+    width: 30px;
+    height: 30px;
+    background:url(../../images/mi_login.png) center center no-repeat;
+    background-size: 100%;
+    float: left;
+    border-radius: 50%;
+    position: absolute;
+    top: 8px;
+    left: 0;
+}
+.haslog{
+    width: 70px;
+    height: 48px;
+    line-height: 48px;
+    float: left;
+    position: relative;
+    padding: 0 20px 0 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: none;
+}
+a.username{
+    white-space: nowrap;
+    height: 30px;
+    padding: 0 5px;
+}
+a.arrow-down{
+    width: 30px;
+    height: 30px;
+    float: left;
+    background: url(../../images/yp-icons.2bf57ccf.png) 0 -1662px no-repeat;
+    position: absolute;
+    right: 0;
+    top: 8px;
+}
+.user-drop{
+    position: absolute;
+    z-index: 199999;
+    width: 100px;
+    top: 48px;
+    left: 20px;
+    background-color: #fff;
+    box-shadow: 0 3px 28px rgba(0,0,0,.1);
+    display: none;
+}
+.user-drop li{
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+}
+.user-drop li:hover{
+    background-color: #845F3F;
+    color: #fff;
 }
 /* 顶部结束 */
 .container{
@@ -170,7 +231,6 @@
     background-color: #fff;
     position: absolute;
     top: 50px;
-    border: 1px solid #e7e7e7;
     z-index: 222;
     box-shadow: 1px 9px 25px rgba(0,0,0,.1);
     display: none;
@@ -270,6 +330,7 @@
     z-index: 10;
     display: none;
     padding: 15px 0 0 20px;
+    border: 1px solid #E7E7E7;
 }
 
 .nav-detail-title{
@@ -751,6 +812,7 @@ span.swiper-pagination-bullet-active{
 /* 专属推荐 */
 .recommend-list{
     height: auto;
+    padding-bottom: 90px;
 }
 .recommend-list .h-section{
     height: auto;
@@ -828,7 +890,6 @@ span.swiper-pagination-bullet-active{
     border-top: 1px solid #e7e7e7;
     background-color: #fff;
     color: #666;
-    margin-top: 90px;
     clear: both;
 }
 .m-footer .container{

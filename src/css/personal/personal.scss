@@ -1,0 +1,80 @@
+@import "../mixins/common.scss";
+
+.personal{
+    width: 100%;
+    background-color: #FAFAFA;
+    padding-bottom: 100px;
+    .container{
+        width: 1080px;
+        margin: 0 auto;
+        .nav{
+            padding: 30px 0;
+        }
+        .personal-center{
+            width: 100%;
+            min-height: 700px;
+        }
+        .per-select{
+            width: 173px;
+            min-height: 700px;
+            float: left;
+            background-color: #fff;
+            margin-right:7px;
+            .head{
+                text-align: center;
+                padding: 36px 10px;
+                border-bottom: 1px solid #f3f3f3;
+                .img-head{
+                    width: 54px;
+                    height: 54px;
+                    margin: 0 auto 8px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    img{
+                        width: 54px;
+                        height: 54px;
+                    }
+                    p.username{
+                        overflow: hidden;
+                        -o-text-overflow: ellipsis;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        text-align: center;
+                    }
+                }
+            }
+            .select li{
+                padding: 16px 20px;
+                position: relative;
+                text-align: center;
+            }
+            .select-active{
+                position: absolute;
+                width: 6px;
+                height: 6px;
+                background-color: #845f3f;
+                border-radius: 50%;
+                top: 50%;
+                margin-top: -3px;
+                margin-left: -15px;
+            }
+        }
+        .select-detail{
+            width: 900px;
+            min-height: 700px;
+            background: #fff repeat 0 0 none;
+            float: left;
+            .personal-main-box{
+                padding: 11px 0 0 60px;
+                min-height: 500px;
+                position: relative;
+                div{
+                    width: 840px;
+                    min-height: 500px;
+                    position: absolute;
+                    background-color: #fff;
+                }
+            }
+        }
+    }
+}
