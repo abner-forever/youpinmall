@@ -1,12 +1,12 @@
 
 console.log("加载login.js");
 require(["../../js/conf/config"], function () {
-    require(["jquery", "common"], function ($, common) {
+    require(["jquery", "common"], function ($) {
         $(function () {
             
             var userlist = [];
             //读取cookie
-            var userliststr = common.getCookie("userlist");
+            var userliststr = getCookie("userlist");
             //判断cookie是否存在
             if (userliststr != null) {
                 userlist = JSON.parse(userliststr);
@@ -122,7 +122,6 @@ require(["../../js/conf/config"], function () {
                     var d = new Date();
                     d.setDate(d.getDate() + 3);
                     document.cookie = "userlist=" + str + ";expires=" + d + ";path=/";
-                    console.log(common);
                     // 验证通过
                     console.log("登录成功");
                     //跳转页面

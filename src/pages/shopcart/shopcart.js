@@ -1,14 +1,14 @@
 console.log("加载shopcart.js");
 require(["../../js/conf/config"], function () {
-    require(["jquery", "common"], function ($, common) {
+    require(["jquery","template" ,"common"], function ($,template) {
         $(function () {
             var list = [];
-            var liststr = common.getCookie("list");
+            var liststr = getCookie("list");
             if (liststr) {
                 var list = JSON.parse(liststr); //将cookie转换成数组
             }
             let userlist = [];
-            let userstr = common.getCookie("userlist");
+            let userstr = getCookie("userlist");
             if (userstr) {
                 userlist = JSON.parse(userstr);
             }

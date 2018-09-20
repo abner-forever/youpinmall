@@ -1,20 +1,20 @@
 
 console.log("加载detail.js");
 require(["../../js/conf/config"], function () {
-    require(["jquery", "common"], function ($, common) {
+    require(["jquery", "template","pageinit","common"], function ($,template) {
         $(function () {
             var detail = [];
-            var detailstr = common.getCookie("detail");
+            var detailstr = getCookie("detail");
             if (detailstr) {
                 detail = JSON.parse(detailstr); //将cookie转换成数组
             }
             var list = [];
-            var liststr = common.getCookie("list");
+            var liststr = getCookie("list");
             if (liststr) {
                 var list = JSON.parse(liststr); //将cookie转换成数组
             }
             let userlist = [];
-            let userstr = common.getCookie("userlist");
+            let userstr = getCookie("userlist");
             if (userstr) {
                 userlist = JSON.parse(userstr);
             }
@@ -23,77 +23,6 @@ require(["../../js/conf/config"], function () {
             $.each(list, function (index, value) {
                 totalcount += value.count;
             })
-
-            //加载页面
-            $(".top").load("/pages/templates/index/top.html", function () {
-                //判断是否登录
-                if (userstr) {
-                    console.log("yes");
-                    $(".haslog").show();
-                    $(".unlog").hide();
-                    $(".user-center").mouseenter(function () {
-                        $(".user-drop").slideToggle("fast","linear");
-                    })
-                    $(".user-center").mouseleave(function () {
-                        $(".user-drop").hide();
-                    })
-                    $(".my-order").on("click", function () {
-                        window.open("/pages/personal/personal.html");
-                    })
-                    //退出登录
-                    $(".logout").click(function () {
-                        console.log("out");
-                        var d = new Date();
-                        d.setDate(d.getDate() - 999);
-                        document.cookie = "userlist=" + userstr + ";expires=" + d + ";path=/";
-                        window.location.href = "/";
-                    })
-                } else {
-                    $(".haslog").hide();
-                    $(".unlog").show();
-                }
-            })
-            $(".header").load("/pages/templates/index/header.html", function () {
-                //购物车商品数量
-                if (totalcount != 0) {
-                    $(".m-cart-news").text(totalcount);
-                }
-                 //输入框搜索
-                 $(".m-search-input").on("input", function () {
-                    $(".hint").show();
-                    $(".m-search-box").addClass("input-bottom");
-
-                    //假装请求有品的数据 实际来自百度 测试使用
-                    $.ajax({
-                        type: "get",
-                        url: `http://suggestion.baidu.com/?wd=` + $(this).val(),
-                        dataType: "jsonp",
-                        jsonp: "cb",
-                        success: function (data) {
-                            $(".hint ul").html("");
-                            data.s.forEach(item => {
-                                var li = document.createElement("li");
-                                li.innerText = item;
-                                $(".hint ul").append(li);
-                            });
-                            $(".hint ul").on("click", "li", function () {
-                                $(".m-search-input").val($(this).text());
-                                $(".hint").hide();
-                            });
-                        },
-                        error: function () {
-                            console.log("search error");
-                        }
-                    })
-
-                })
-                $(".m-search-input").blur(function () {
-                    $(".m-search-box").removeClass("input-bottom");
-                })
-            })
-            $(".footer").load("/pages/templates/index/footer.html")
-
-
             //加载详情信息
             $(".detail-container").load("/pages/templates/shopdetail.html", function () {
                 var detailhtm = template("shopdetail", {
@@ -145,7 +74,7 @@ require(["../../js/conf/config"], function () {
                     console.log(imgurl);
 
                     //读取cookie
-                    var liststr = common.getCookie("list");
+                    var liststr = getCookie("list");
                     //判断cookie信息是否存在
                     if (liststr != null) {
                         list = JSON.parse(liststr);
