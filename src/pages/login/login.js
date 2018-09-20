@@ -30,16 +30,39 @@ require(["../../js/conf/config"], function () {
             //手机号登录/注册验证
             $(".register").on("click", function () {
                 var phone = $(".phonenum").val();
-                console.log(phone);
-
-                if (!(/^1[34578]\d{9}$/.test(phone))) {
+                var msg = $(".msgcode").val();
+                if($.trim(phone)==""){
+                    $(".err-tip").find("span").text("请输入手机号");
                     $(".err-tip").show();
+                    $(".phonenum").parent().addClass("error");
+                    return false;
+                }
+                if (!(/^1[34578]\d{9}$/.test(phone))) {
+                    $(".err-tip").find("span").text("手机号格式不正确");
+                    $(".err-tip").show();
+                    $(".phonenum").parent().addClass("error");
                     return false;
                 } else {
                     $(".err-tip").hide();
+                    $(".phonenum").parent().removeClass("error");
+
                 }
-                if ($(".msgcode").val() != "") {
-                    window.location.href = "http://localhost:9000/index.html"
+                if ($.trim(msg) == "") {
+                    $(".err-tip").find("span").text("请输入验证码");
+                    $(".err-tip").show();
+                    $(".msgcode").addClass("error");
+                    $(".msgcode").parent().addClass("error");
+                    return false;
+                }
+                if (!(/^[0-9]{6}$/.test(msg))) {
+                    $(".err-tip").find("span").text("验证码不正确");
+                    $(".err-tip").show();
+                    $(".msgcode").parent().addClass("error");
+                    return false;
+                } else {
+                    $(".err-tip").hide();
+                    $(".phonenum").parent().removeClass("error");
+                    window.location.href="/";                    
                 }
             })
             //账号密码登录
@@ -49,11 +72,12 @@ require(["../../js/conf/config"], function () {
                 let uPwd = $(".password").val();
 
                 if ($.trim(uName) == "") {
+                    $(".err-tip").find("span").text("请输入账号");
                     $(".err-tip").show();
                     $(".username").addClass("error")
                     return false;
                 } else if (!/^[^@\s\?]+@[^@\s\?]+(\.[^@\s\?]+)+$|^1[34578]\d{9}$/.test(uName)) { //邮箱手机号验证
-                    $(".err-tip").find("span").text("用户名格式有误");
+                    $(".err-tip").find("span").text("用户名不正确");
                     $(".err-tip").show();
                     $(".username").addClass("error");
                     return false;
@@ -61,7 +85,6 @@ require(["../../js/conf/config"], function () {
                     $(".username").removeClass("error")
                     $(".err-tip").hide();
                 }
-
 
                 if (uPwd == "") {
                     $(".err-tip").find("span").text("密码不能为空");

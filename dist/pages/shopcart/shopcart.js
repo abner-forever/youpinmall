@@ -1,1 +1,227 @@
-console.log("\u52A0\u8F7Dshopcart.js"),require(["../../js/conf/config"],function(){require(["jquery","common"],function(a,b){a(function(){var c=[],d=b.getCookie("list");if(d)var c=JSON.parse(d);let e=[],f=b.getCookie("userlist");f&&(e=JSON.parse(f));var g=0;a.each(c,function(a,b){g+=b.count}),a(".top").load("/pages/templates/index/top.html",function(){f?(console.log("yes"),a(".haslog").show(),a(".unlog").hide(),a(".user-center").mouseenter(function(){a(".user-drop").slideToggle("fast","linear")}),a(".user-center").mouseleave(function(){a(".user-drop").hide()}),a(".my-order").on("click",function(){window.open("/pages/personal/personal.html")}),a(".logout").click(function(){console.log("out");var a=new Date;a.setDate(a.getDate()-999),document.cookie="userlist="+f+";expires="+a+";path=/",window.location.href="/"})):(a(".haslog").hide(),a(".unlog").show())}),a(".header").load("/pages/templates/index/header.html",function(){0!=g&&a(".m-cart-news").text(g),a(".m-search-input").on("input",function(){a(".hint").show(),a(".m-search-box").addClass("input-bottom"),a.ajax({type:"get",url:`http://suggestion.baidu.com/?wd=`+a(this).val(),dataType:"jsonp",jsonp:"cb",success:function(b){a(".hint ul").html(""),b.s.forEach(b=>{var c=document.createElement("li");c.innerText=b,a(".hint ul").append(c)}),a(".hint ul").on("click","li",function(){a(".m-search-input").val(a(this).text()),a(".hint").hide()})},error:function(){console.log("search error")}})}),a(".m-search-input").blur(function(){a(".m-search-box").removeClass("input-bottom")})}),a(".footer").load("/pages/templates/index/footer.html"),a(".goods-list").load("/pages/templates/shoplist.html",function(){var b=template("shoplist",{shoplist:c});a(".goods-list").html(b),console.log("\u52A0\u8F7D\u6210\u529F"),a(".add-num").on("click",function(){var b=a(this).parent().parent().siblings(".product").text(),e=+a(this).parent().parent().siblings(".price").find("span").text(),f=+a(this).parent().find(".text").text()+1;a(this).parent().parent().siblings(".total").find("span").text(f*e),a(this).parent().find(".text").text(f),a(".m-cart-news").text(++g),a.each(c,function(a,c){c.name==b&&(c.count=f)});var h=JSON.stringify(c),i=new Date;i.setDate(i.getDate()+3),document.cookie="list="+h+"; expires="+i+";path=/"}),a(".reduce-num").on("click",function(){var b=a(this).parent().parent().siblings(".product").text(),e=+a(this).parent().find(".text").text()-1;if(0!=e){a(".m-cart-news").text(--g);var f=+a(this).parent().parent().siblings(".price").find("span").text();a(this).parent().parent().siblings(".total").find("span").text(e*f),a(this).parent().find(".text").text(e),a.each(c,function(a,c){c.name==b&&(c.count=e)});var h=JSON.stringify(c),i=new Date;i.setDate(i.getDate()+3),document.cookie="list="+h+"; expires="+i+";path=/"}}),a(".edit").on("click",function(){console.log("delete"),a(this).parent().parent().siblings(".delete-box").show(),a(".close-box").click(function(){a(this).parent().parent(".delete-box").hide()}),a(".cancel").click(function(){a(this).parent().parent(".delete-box").hide()});let b=this;a(".affirm").click(function(){let e,f=a(b).siblings(".product").text();a.each(c,function(b,c){c.name==f&&(e=b,g-=c.count,0==g?(console.log("0"),a(".m-cart-news").text("")):a(".m-cart-news").text(g))}),c.splice(e,1);var h=JSON.stringify(c),i=new Date;i.setDate(i.getDate()+3),document.cookie="list="+h+"; expires="+i+";path=/",a(b).parent().parent().parent().remove()})})}),a(window).scroll(function(){500<=a(this).scrollTop()?(a(".m-header-fix").addClass("m-header-fixed"),a(".nav-part").show(),a(".m-kind").find(".nav-part").on("mouseover",function(){a(".nav-container").addClass("nav-container-fix").show(200)}),a(".m-kind").find(".nav-part").on("mouseout",function(){a(".nav-container").removeClass("nav-container-fix")})):(a(".m-header-fix").removeClass("m-header-fixed"),a(".nav-part").hide());var b=Math.round((a(this).scrollTop()-1e3)/600);a("#LoutiNav ul li:not(last)").eq(b).addClass("hover").siblings().removeClass("hover")})})})});
+console.log("加载shopcart.js");
+require(["../../js/conf/config"], function () {
+    require(["jquery", "common"], function ($, common) {
+        $(function () {
+            var list = [];
+            var liststr = common.getCookie("list");
+            if (liststr) {
+                var list = JSON.parse(liststr); //将cookie转换成数组
+            }
+            let userlist = [];
+            let userstr = common.getCookie("userlist");
+            if (userstr) {
+                userlist = JSON.parse(userstr);
+            }
+
+            var totalcount = 0;
+            $.each(list, function (index, value) {
+                totalcount += value.count;
+            })
+            //加载页面
+            $(".top").load("/pages/templates/index/top.html", function () {
+                //判断是否登录
+                if (userstr) {
+                    console.log("yes");
+                    $(".haslog").show();
+                    $(".unlog").hide();
+                    $(".user-center").mouseenter(function () {
+                        $(".user-drop").slideToggle("fast", "linear");
+                    })
+                    $(".user-center").mouseleave(function () {
+                        $(".user-drop").hide();
+                    })
+                    $(".my-order").on("click", function () {
+                        window.open("/pages/personal/personal.html");
+                    })
+                    //退出登录
+                    $(".logout").click(function () {
+                        console.log("out");
+                        var d = new Date();
+                        d.setDate(d.getDate() - 999);
+                        document.cookie = "userlist=" + userstr + ";expires=" + d + ";path=/";
+                        window.location.href = "/";
+                    })
+                } else {
+                    $(".haslog").hide();
+                    $(".unlog").show();
+                }
+            })
+            $(".header").load("/pages/templates/index/header.html", function () {
+                //购物车商品数量
+                if (totalcount != 0) {
+                    $(".m-cart-news").text(totalcount);
+                }
+                //输入框搜索
+                $(".m-search-input").on("input", function () {
+                    $(".hint").show();
+                    $(".m-search-box").addClass("input-bottom");
+
+                    //假装请求有品的数据 实际来自百度 测试使用
+                    $.ajax({
+                        type: "get",
+                        url: `http://suggestion.baidu.com/?wd=` + $(this).val(),
+                        dataType: "jsonp",
+                        jsonp: "cb",
+                        success: function (data) {
+                            $(".hint ul").html("");
+                            data.s.forEach(item => {
+                                var li = document.createElement("li");
+                                li.innerText = item;
+                                $(".hint ul").append(li);
+                            });
+                            $(".hint ul").on("click", "li", function () {
+                                $(".m-search-input").val($(this).text());
+                                $(".hint").hide();
+                            });
+                        },
+                        error: function () {
+                            console.log("search error");
+                        }
+                    })
+
+                })
+                $(".m-search-input").blur(function () {
+                    $(".m-search-box").removeClass("input-bottom");
+                })
+            })
+            $(".footer").load("/pages/templates/index/footer.html")
+            //加载购物车商品列表
+            $(".goods-list").load("/pages/templates/shoplist.html", function () {
+                var shopliststr = template("shoplist", {
+                    shoplist: list
+                })
+                $(".goods-list").html(shopliststr);
+                console.log("加载成功");
+                //增加商品count
+                $(".add-num").on("click", function () {
+                    var name = $(this).parent().parent().siblings(".product").text();
+                    var price = Number($(this).parent().parent().siblings(".price").find("span").text());
+                    var count = Number($(this).parent().find(".text").text()) + 1;
+                    $(this).parent().parent().siblings(".total").find("span").text(count * price);
+                    $(this).parent().find(".text").text(count);
+                    $(".m-cart-news").text(++totalcount);
+                    //修改cookie的count值
+                    $.each(list, function (index, value) {
+                        if (value.name == name) {
+                            value.count = count;
+                        }
+                    })
+                    var str = JSON.stringify(list);
+                    var d = new Date();
+                    d.setDate(d.getDate() + 3);
+                    document.cookie = "list=" + str + "; expires=" + d + ";path=" + "/";
+                })
+                //减少商品count
+                $(".reduce-num").on("click", function () {
+                    var name = $(this).parent().parent().siblings(".product").text();
+                    var count = Number($(this).parent().find(".text").text()) - 1;
+                    if (count == 0) return;
+                    $(".m-cart-news").text(--totalcount);
+                    var price = Number($(this).parent().parent().siblings(".price").find("span").text());
+                    $(this).parent().parent().siblings(".total").find("span").text(count * price);
+                    $(this).parent().find(".text").text(count);
+                    //修改cookie的count值
+                    $.each(list, function (index, value) {
+                        if (value.name == name) {
+                            value.count = count;
+                        }
+                    })
+                    var str = JSON.stringify(list);
+                    var d = new Date();
+                    d.setDate(d.getDate() + 3);
+                    document.cookie = "list=" + str + "; expires=" + d + ";path=" + "/";
+                })
+                //删除当前商品 有bug
+                $(".edit").on("click", function () {
+                    console.log("delete");
+                    $(this).parent().parent().siblings(".delete-box").show();
+                    $(".close-box").click(function () {
+                        $(this).parent().parent(".delete-box").hide();
+                    })
+                    $(".cancel").click(function () {
+                        $(this).parent().parent(".delete-box").hide();
+                    })
+                    let that = this;
+                    $(".affirm").click(function () {
+                        //确认删除
+                        let name = $(that).siblings(".product").text();
+                        let targetindex;
+                        $.each(list, function (index, value) {
+                            if (value.name == name) {
+                                targetindex = index; //存储目标元素下标
+                                totalcount -= value.count;
+                                if (totalcount == 0) {
+                                    console.log("0");
+                                    $(".m-cart-news").text("");
+                                } else {
+
+                                    $(".m-cart-news").text(totalcount);
+                                }
+                            }
+                        })
+                        //删除数组里面的目标元素 //在循环外边删除数组 
+                        list.splice(targetindex, 1);
+
+                        var str = JSON.stringify(list);
+                        var d = new Date();
+                        d.setDate(d.getDate() + 3);
+                        document.cookie = "list=" + str + "; expires=" + d + ";path=" + "/";
+                        //移除元素
+                        $(that).parent().parent().parent().remove();
+
+                    })
+                })
+
+                //勾选商品
+                //单选
+                $("a.select-single").on("click", function () {
+                    if (!$(this).hasClass("select-active")) {
+                        $(this).addClass("select-active")
+                    } else {
+                        $(this).removeClass("select-active")
+                    }
+                    //如果找到没有选中的复选框 ，则返回true
+                    var isAllSelect = $("a.select-single").is(function (index) {
+                        return !$(this).hasClass("select-active");
+                    })
+                    if (!isAllSelect) {
+                        $(".selectall").addClass("select-active");
+                    } else {
+                        $(".selectall").removeClass("select-active");
+                    }
+                });
+                //全选
+                $(".selectall").on("click", function () {
+                    if (!$(".selectall").hasClass("select-active")) {
+                        $(".selectall").addClass("select-active");
+                        $("a.select-single").addClass("select-active");
+                    } else {
+                        $(".selectall").removeClass("select-active");
+                        $("a.select-single").removeClass("select-active");
+                    }
+
+                });
+
+
+                //下滑固定头部
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() >= 500) {
+                        $(".m-header-fix").addClass("m-header-fixed");
+                        $(".nav-part").show();
+                        $(".m-kind").find(".nav-part").on("mouseover", function () {
+                            $(".nav-container").addClass("nav-container-fix").show(200);
+                        });
+                        $(".m-kind").find(".nav-part").on("mouseout", function () {
+                            $(".nav-container").removeClass("nav-container-fix");
+                        });
+                    } else {
+                        $(".m-header-fix").removeClass("m-header-fixed");
+                        $(".nav-part").hide();
+                    }
+                    var index = Math.round(($(this).scrollTop() - 1000) / 600);
+                    $("#LoutiNav ul li:not(last)").eq(index).addClass("hover").siblings().removeClass("hover")
+                })
+            })
+        })
+    })
+})

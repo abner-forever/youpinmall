@@ -9,7 +9,7 @@ let https = require("https");
 gulp.task("build", () => {
     //压缩JS文件
     gulp.src("./src/**/*.js")
-        .pipe(minifyJS())
+        // .pipe(minifyJS())
         .pipe(gulp.dest("./dist"))
     //压缩CSS文件
     gulp.src("./src/**/*.css")
@@ -56,7 +56,7 @@ gulp.task("refreshSCSS", () => {
 
 gulp.task("refreshJS", () => {
     gulp.src("./src/**/*.js")
-        .pipe(minifyJS())
+        // .pipe(minifyJS())
         .pipe(gulp.dest("./dist"))
 })
 

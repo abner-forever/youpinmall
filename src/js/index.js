@@ -10,15 +10,10 @@ require(["conf/config"], function () {
             let userstr = common.getCookie("userlist");
             if (liststr) {
                 list = JSON.parse(liststr); //将cookie转换成数组
-                console.log("cookie 存在");
             }
             if (userstr) {
                 userlist = JSON.parse(userstr);
-                console.log(userlist);
-                console.log("用户cookie存在");
-
             }
-
             var totalcount = 0;
             $.each(list, function (index, value) {
                 totalcount += value.count;
@@ -26,14 +21,12 @@ require(["conf/config"], function () {
 
             //加载公共部分
             $(".top").load("/pages/templates/index/top.html", function () {
-
                 //判断是否登录
                 if (userstr) {
-                    console.log("yes");
                     $(".haslog").show();
                     $(".unlog").hide();
                     $(".user-center").mouseenter(function () {
-                        $(".user-drop").slideToggle("fast","linear");
+                        $(".user-drop").slideToggle("fast", "linear");
                     })
                     $(".user-center").mouseleave(function () {
                         $(".user-drop").hide();
@@ -43,11 +36,11 @@ require(["conf/config"], function () {
                     })
                     //退出登录
                     $(".logout").click(function () {
-                        console.log("out"); 
+                        console.log("out");
                         var d = new Date();
                         d.setDate(d.getDate() - 999);
                         document.cookie = "userlist=" + userstr + ";expires=" + d + ";path=/";
-                        window.location.href="/";
+                        window.location.href = "/";
                     })
                 } else {
                     $(".haslog").hide();
@@ -95,36 +88,20 @@ require(["conf/config"], function () {
             })
             $(".footer").load("/pages/templates/index/footer.html")
 
-            //轮播图插件
-            var mySwiper = new Swiper('.swiper-container', {
-                direction: 'horizontal',
-                loop: true,
-                // 如果需要分页器
-                pagination: {
-                    el: '.swiper-pagination',
-                },
-                // 如果需要前进后退按钮
-                navigation: {
-                    nextEl: '.carousel-next-btn',
-                    prevEl: '.carousel-prev-btn',
-                },
-            })
             // 加载主页图片 数据
             var products = [];
             $.ajax({
-                type: "get",
+                type: "post",
                 url: "http://localhost:9000/v1002?platform=pc",
-                // url:"https://youpin.mi.com/homepage/main/v1002",
-                // url: "http://localhost:8080/ajax/json/indexdata.json",
+                // url:"https://youpin.mi.com/homepage/main/v1002?platform=pc",
                 dataType: "json",
-                /* jsonp : "platform",
-                jsonpCallback: 'pc', */
                 success: function (res) {
                     console.log(res);
+                    
                     var floors = res.data.homepage.floors;
                     //拿有品推荐数据
                     var ypintro = floors[1];
-                    $(".ypintro").load("http://localhost:9000/pages/templates/index/ypintro.html", function () {
+                    $(".ypintro").load("pages/templates/index/ypintro.html", function () {
                         var introstr = template("ypintro", {
                             ypintro: ypintro
                         })
@@ -132,7 +109,7 @@ require(["conf/config"], function () {
                     });
                     //拿到小米众筹数据
                     var ypcrowd = floors[2];
-                    $(".ypcrowd").load("http://localhost:9000/pages/templates/index/ypcrowd.html", function () {
+                    $(".ypcrowd").load("/pages/templates/index/ypcrowd.html", function () {
                         var crowdstr = template("ypcrowd", {
                             ypcrowd: ypcrowd
                         })
@@ -140,7 +117,7 @@ require(["conf/config"], function () {
                     });
                     //拿到新品数据
                     var product_new = floors[3];
-                    $(".product-newlist").load("http://localhost:9000/pages/templates/index/product_new.html", function () {
+                    $(".product-newlist").load("/pages/templates/index/product_new.html", function () {
                         var product_newstr = template("product_new", {
                             product_new: product_new
                         })
@@ -148,9 +125,8 @@ require(["conf/config"], function () {
                     });
                     //拿到热门数据
                     var product_hot = floors[4];
-                    console.log(product_hot);
 
-                    $(".product-hotlist").load("http://localhost:9000/pages/templates/index/product_hot.html", function () {
+                    $(".product-hotlist").load("/pages/templates/index/product_hot.html", function () {
                         var product_hotstr = template("product_hot", {
                             product_hot: product_hot
                         })
@@ -162,7 +138,7 @@ require(["conf/config"], function () {
                             products.push(floors[i]);
                         }
                     }
-                    $(".product-list").load("http://localhost:9000/pages/templates/index/productlist.html", function () {
+                    $(".product-list").load("/pages/templates/index/productlist.html", function () {
                         var productstr = template("productlist", {
                             products: products
                         })
@@ -170,8 +146,7 @@ require(["conf/config"], function () {
                     })
                     //拿到专属推荐数据
                     var exrecommend = res.data.recommend.floors[0].data;
-                    console.log(exrecommend);
-                    $(".recommend-list").load("http://localhost:9000/pages/templates/index/recommend.html", function () {
+                    $(".recommend-list").load("/pages/templates/index/recommend.html", function () {
                         var recommendstr = template("recommend", {
                             recommend: exrecommend
                         })
@@ -204,10 +179,28 @@ require(["conf/config"], function () {
 
                     })
                 },
-                error: function () {
+                error: function (data) {
+                    console.log(data);
+
                     console.log("请求数据出错了la");
                 }
             })
+
+            //轮播图插件
+            var mySwiper = new Swiper('.swiper-container', {
+                direction: 'horizontal',
+                loop: true,
+                // 分页器
+                pagination: {
+                    el: '.swiper-pagination',
+                },
+                // 前进后退按钮
+                navigation: {
+                    nextEl: '.carousel-next-btn',
+                    prevEl: '.carousel-prev-btn',
+                },
+            })
+
             //导航详细信息显示
             $(".nav-list li,.nav-detail").hover(
                 function () {

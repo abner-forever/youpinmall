@@ -73,6 +73,11 @@
                     min-height: 500px;
                     position: absolute;
                     background-color: #fff;
+                    display: none;
+                    
+                }
+                .order-box{
+                    display: block;
                 }
             }
         }

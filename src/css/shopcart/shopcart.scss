@@ -8,6 +8,22 @@ body{
     width: 100%;
     border-top: 1px solid #e7e7e7;
 }
+
+
+a.selectall,a.select-single{
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    vertical-align: middle;
+    line-height: 100%;
+    margin: 8px;
+    display: inline-block;
+    background: url(../../../images/yp-icons.2bf57ccf.png) no-repeat;
+    background-position: 0 -490px;
+}
+a.select-active{
+    background-position: 0 -402px;
+}
 .goods .container{
     width: 1080px;
     margin: 0 auto;
@@ -21,16 +37,8 @@ body{
             height: 40px;
             line-height: 40px;
         }
-        a.checkall{
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            border:2px solid #ccc;
-            vertical-align: middle;
-            line-height: 100%;
-            margin: 8px;
-            display: inline-block;
-        }
+        
+
         ul{
             float: right;
             margin-right: 10px; 

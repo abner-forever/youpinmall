@@ -25,7 +25,7 @@ require(["../../js/conf/config"], function () {
                     $(".haslog").show();
                     $(".unlog").hide();
                     $(".user-center").mouseenter(function () {
-                        $(".user-drop").slideToggle("fast","linear");
+                        $(".user-drop").slideToggle("fast", "linear");
                     })
                     $(".user-center").mouseleave(function () {
                         $(".user-drop").hide();
@@ -154,14 +154,14 @@ require(["../../js/conf/config"], function () {
                                     console.log("0");
                                     $(".m-cart-news").text("");
                                 } else {
-                                    
+
                                     $(".m-cart-news").text(totalcount);
                                 }
                             }
                         })
                         //删除数组里面的目标元素 //在循环外边删除数组 
                         list.splice(targetindex, 1);
-                        
+
                         var str = JSON.stringify(list);
                         var d = new Date();
                         d.setDate(d.getDate() + 3);
@@ -171,26 +171,56 @@ require(["../../js/conf/config"], function () {
 
                     })
                 })
-            })
+
+                //勾选商品
+                //单选
+                $("a.select-single").on("click", function () {
+                    if (!$(this).hasClass("select-active")) {
+                        $(this).addClass("select-active")
+                    } else {
+                        $(this).removeClass("select-active")
+                    }
+                    //如果找到没有选中的复选框 ，则返回true
+                    var isAllSelect = $("a.select-single").is(function (index) {
+                        return !$(this).hasClass("select-active");
+                    })
+                    if (!isAllSelect) {
+                        $(".selectall").addClass("select-active");
+                    } else {
+                        $(".selectall").removeClass("select-active");
+                    }
+                });
+                //全选
+                $(".selectall").on("click", function () {
+                    if (!$(".selectall").hasClass("select-active")) {
+                        $(".selectall").addClass("select-active");
+                        $("a.select-single").addClass("select-active");
+                    } else {
+                        $(".selectall").removeClass("select-active");
+                        $("a.select-single").removeClass("select-active");
+                    }
+
+                });
 
 
-            //下滑固定头部
-            $(window).scroll(function () {
-                if ($(this).scrollTop() >= 500) {
-                    $(".m-header-fix").addClass("m-header-fixed");
-                    $(".nav-part").show();
-                    $(".m-kind").find(".nav-part").on("mouseover", function () {
-                        $(".nav-container").addClass("nav-container-fix").show(200);
-                    });
-                    $(".m-kind").find(".nav-part").on("mouseout", function () {
-                        $(".nav-container").removeClass("nav-container-fix");
-                    });
-                } else {
-                    $(".m-header-fix").removeClass("m-header-fixed");
-                    $(".nav-part").hide();
-                }
-                var index = Math.round(($(this).scrollTop() - 1000) / 600);
-                $("#LoutiNav ul li:not(last)").eq(index).addClass("hover").siblings().removeClass("hover")
+                //下滑固定头部
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() >= 500) {
+                        $(".m-header-fix").addClass("m-header-fixed");
+                        $(".nav-part").show();
+                        $(".m-kind").find(".nav-part").on("mouseover", function () {
+                            $(".nav-container").addClass("nav-container-fix").show(200);
+                        });
+                        $(".m-kind").find(".nav-part").on("mouseout", function () {
+                            $(".nav-container").removeClass("nav-container-fix");
+                        });
+                    } else {
+                        $(".m-header-fix").removeClass("m-header-fixed");
+                        $(".nav-part").hide();
+                    }
+                    var index = Math.round(($(this).scrollTop() - 1000) / 600);
+                    $("#LoutiNav ul li:not(last)").eq(index).addClass("hover").siblings().removeClass("hover")
+                })
             })
         })
     })

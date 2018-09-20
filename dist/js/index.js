@@ -1,1 +1,239 @@
-console.log("\u52A0\u8F7D\u4E86\u6709\u54C1\u7684index.js"),require(["conf/config"],function(){require(["jquery","swiper","common"],function(a,b,c){a(function(){var d=[];let e=[];var f=c.getCookie("list");let g=c.getCookie("userlist");f&&(d=JSON.parse(f),console.log("cookie \u5B58\u5728")),g&&(e=JSON.parse(g),console.log(e),console.log("\u7528\u6237cookie\u5B58\u5728"));var h=0;a.each(d,function(a,b){h+=b.count}),a(".top").load("/pages/templates/index/top.html",function(){g?(console.log("yes"),a(".haslog").show(),a(".unlog").hide(),a(".user-center").mouseenter(function(){a(".user-drop").slideToggle("fast","linear")}),a(".user-center").mouseleave(function(){a(".user-drop").hide()}),a(".my-order").on("click",function(){window.open("/pages/personal/personal.html")}),a(".logout").click(function(){console.log("out");var a=new Date;a.setDate(a.getDate()-999),document.cookie="userlist="+g+";expires="+a+";path=/",window.location.href="/"})):(a(".haslog").hide(),a(".unlog").show())}),a(".header").load("/pages/templates/index/header.html",function(){a(".m-search-input").on("input",function(){a(".hint").show(),a(".m-search-box").addClass("input-bottom"),a.ajax({type:"get",url:`http://suggestion.baidu.com/?wd=`+a(this).val(),dataType:"jsonp",jsonp:"cb",success:function(b){a(".hint ul").html(""),b.s.forEach(b=>{var c=document.createElement("li");c.innerText=b,a(".hint ul").append(c)}),a(".hint ul").on("click","li",function(){a(".m-search-input").val(a(this).text()),a(".hint").hide()})},error:function(){console.log("search error")}})}),a(".m-search-input").blur(function(){a(".m-search-box").removeClass("input-bottom")}),0!=h&&a(".m-cart-news").text(h)}),a(".footer").load("/pages/templates/index/footer.html");var i=new b(".swiper-container",{direction:"horizontal",loop:!0,pagination:{el:".swiper-pagination"},navigation:{nextEl:".carousel-next-btn",prevEl:".carousel-prev-btn"}}),j=[];a.ajax({type:"get",url:"http://localhost:9000/v1002?platform=pc",dataType:"json",success:function(b){console.log(b);var c=b.data.homepage.floors,d=c[1];a(".ypintro").load("http://localhost:9000/pages/templates/index/ypintro.html",function(){var b=template("ypintro",{ypintro:d});a(".ypintro").html(b)});var e=c[2];a(".ypcrowd").load("http://localhost:9000/pages/templates/index/ypcrowd.html",function(){var b=template("ypcrowd",{ypcrowd:e});a(".ypcrowd").html(b)});var f=c[3];a(".product-newlist").load("http://localhost:9000/pages/templates/index/product_new.html",function(){var b=template("product_new",{product_new:f});a(".product-newlist").html(b)});var g=c[4];console.log(g),a(".product-hotlist").load("http://localhost:9000/pages/templates/index/product_hot.html",function(){var b=template("product_hot",{product_hot:g});a(".product-hotlist").html(b)});for(var h=0;h<c.length;h++)7<h&&j.push(c[h]);a(".product-list").load("http://localhost:9000/pages/templates/index/productlist.html",function(){var b=template("productlist",{products:j});a(".product-list").html(b)});var k=b.data.recommend.floors[0].data;console.log(k),a(".recommend-list").load("http://localhost:9000/pages/templates/index/recommend.html",function(){var b=template("recommend",{recommend:k});a(".recommend-list").html(b)}),a("body").on("click",".m-product-item-container",function(){var b=[],c=a(this).find(".pro-info").text(),d=a(this).find(".pro-price").find(".m-num").text(),e=a(this).find(".m-product-image").find("img").attr("src"),f=a(this).find(".m-product-image").find(".pro-desc").text();console.log(f),console.log(c,d,e);b.pop(),b.push({name:c,price:d,imgurl:e,summary:f});var g=JSON.stringify(b);document.cookie="detail="+g+";path=/",window.open("pages/detail/detail.html","_blank")})},error:function(){console.log("\u8BF7\u6C42\u6570\u636E\u51FA\u9519\u4E86la")}}),a(".nav-list li,.nav-detail").hover(function(){a(".nav-detail").show()},function(){a(".nav-detail").hide()}),a(".fixed-nav li:last").click(function(){a("html,body").stop().animate({scrollTop:0},1e3)}),a(window).scroll(function(){500<=a(this).scrollTop()?(a(".m-header-fix").addClass("m-header-fixed"),a(".nav-part").show(),a(".m-kind").find(".nav-part").on("mouseover",function(){a(".nav-container").addClass("nav-container-fix").show(200)}),a(".m-kind").find(".nav-part").on("mouseout",function(){a(".nav-container").removeClass("nav-container-fix")})):(a(".m-header-fix").removeClass("m-header-fixed"),a(".nav-part").hide());var b=Math.round((a(this).scrollTop()-1e3)/600);a("#LoutiNav ul li:not(last)").eq(b).addClass("hover").siblings().removeClass("hover")})})})});
+console.log("加载了有品的index.js");
+
+require(["conf/config"], function () {
+    require(["jquery", "swiper", "common"], function ($, Swiper, common) {
+        $(function () {
+            //加载购物车cookie
+            var list = [];
+            let userlist = [];
+            var liststr = common.getCookie("list");
+            let userstr = common.getCookie("userlist");
+            if (liststr) {
+                list = JSON.parse(liststr); //将cookie转换成数组
+            }
+            if (userstr) {
+                userlist = JSON.parse(userstr);
+            }
+            var totalcount = 0;
+            $.each(list, function (index, value) {
+                totalcount += value.count;
+            })
+
+            //加载公共部分
+            $(".top").load("/pages/templates/index/top.html", function () {
+                //判断是否登录
+                if (userstr) {
+                    $(".haslog").show();
+                    $(".unlog").hide();
+                    $(".user-center").mouseenter(function () {
+                        $(".user-drop").slideToggle("fast", "linear");
+                    })
+                    $(".user-center").mouseleave(function () {
+                        $(".user-drop").hide();
+                    })
+                    $(".my-order").on("click", function () {
+                        window.open("/pages/personal/personal.html");
+                    })
+                    //退出登录
+                    $(".logout").click(function () {
+                        console.log("out");
+                        var d = new Date();
+                        d.setDate(d.getDate() - 999);
+                        document.cookie = "userlist=" + userstr + ";expires=" + d + ";path=/";
+                        window.location.href = "/";
+                    })
+                } else {
+                    $(".haslog").hide();
+                    $(".unlog").show();
+                }
+
+            })
+            $(".header").load("/pages/templates/index/header.html", function () {
+                //输入框搜索
+                $(".m-search-input").on("input", function () {
+                    $(".hint").show();
+                    $(".m-search-box").addClass("input-bottom");
+
+                    //假装请求有品的数据 实际来自百度 测试使用
+                    $.ajax({
+                        type: "get",
+                        url: `http://suggestion.baidu.com/?wd=` + $(this).val(),
+                        dataType: "jsonp",
+                        jsonp: "cb",
+                        success: function (data) {
+                            $(".hint ul").html("");
+                            data.s.forEach(item => {
+                                var li = document.createElement("li");
+                                li.innerText = item;
+                                $(".hint ul").append(li);
+                            });
+                            $(".hint ul").on("click", "li", function () {
+                                $(".m-search-input").val($(this).text());
+                                $(".hint").hide();
+                            });
+                        },
+                        error: function () {
+                            console.log("search error");
+                        }
+                    })
+
+                })
+                $(".m-search-input").blur(function () {
+                    $(".m-search-box").removeClass("input-bottom");
+                })
+                //购物车商品数量
+                if (totalcount != 0) {
+                    $(".m-cart-news").text(totalcount);
+                }
+            })
+            $(".footer").load("/pages/templates/index/footer.html")
+
+            // 加载主页图片 数据
+            var products = [];
+            $.ajax({
+                type: "post",
+                url: "http://localhost:9000/v1002?platform=pc",
+                // url:"https://youpin.mi.com/homepage/main/v1002?platform=pc",
+                dataType: "json",
+                success: function (res) {
+                    console.log(res);
+                    
+                    var floors = res.data.homepage.floors;
+                    //拿有品推荐数据
+                    var ypintro = floors[1];
+                    $(".ypintro").load("pages/templates/index/ypintro.html", function () {
+                        var introstr = template("ypintro", {
+                            ypintro: ypintro
+                        })
+                        $(".ypintro").html(introstr);
+                    });
+                    //拿到小米众筹数据
+                    var ypcrowd = floors[2];
+                    $(".ypcrowd").load("/pages/templates/index/ypcrowd.html", function () {
+                        var crowdstr = template("ypcrowd", {
+                            ypcrowd: ypcrowd
+                        })
+                        $(".ypcrowd").html(crowdstr);
+                    });
+                    //拿到新品数据
+                    var product_new = floors[3];
+                    $(".product-newlist").load("/pages/templates/index/product_new.html", function () {
+                        var product_newstr = template("product_new", {
+                            product_new: product_new
+                        })
+                        $(".product-newlist").html(product_newstr);
+                    });
+                    //拿到热门数据
+                    var product_hot = floors[4];
+
+                    $(".product-hotlist").load("/pages/templates/index/product_hot.html", function () {
+                        var product_hotstr = template("product_hot", {
+                            product_hot: product_hot
+                        })
+                        $(".product-hotlist").html(product_hotstr);
+                    });
+                    //拿到商品的数据从居家开始
+                    for (var i = 0; i < floors.length; i++) {
+                        if (i > 7) {
+                            products.push(floors[i]);
+                        }
+                    }
+                    $(".product-list").load("/pages/templates/index/productlist.html", function () {
+                        var productstr = template("productlist", {
+                            products: products
+                        })
+                        $(".product-list").html(productstr);
+                    })
+                    //拿到专属推荐数据
+                    var exrecommend = res.data.recommend.floors[0].data;
+                    $(".recommend-list").load("/pages/templates/index/recommend.html", function () {
+                        var recommendstr = template("recommend", {
+                            recommend: exrecommend
+                        })
+                        $(".recommend-list").html(recommendstr);
+                    })
+
+                    //跳转详情页
+                    $("body").on("click", ".m-product-item-container", function () {
+                        // var gid = $(this).attr("data-src");
+                        var detail = [];
+                        var name = $(this).find(".pro-info").text();
+                        var price = $(this).find(".pro-price").find(".m-num").text();
+                        var imgurl = $(this).find(".m-product-image").find("img").attr("src");
+                        var summary = $(this).find(".m-product-image").find(".pro-desc").text();
+                        console.log(summary);
+
+                        console.log(name, price, imgurl);
+
+                        var obj = {
+                            "name": name,
+                            "price": price,
+                            "imgurl": imgurl,
+                            "summary": summary
+                        }
+                        detail.pop();
+                        detail.push(obj);
+                        var str = JSON.stringify(detail);
+                        document.cookie = "detail=" + str + ";path=" + "/";
+                        window.open("pages/detail/detail.html", "_blank");
+
+                    })
+                },
+                error: function (data) {
+                    console.log(data);
+
+                    console.log("请求数据出错了la");
+                }
+            })
+
+            //轮播图插件
+            var mySwiper = new Swiper('.swiper-container', {
+                direction: 'horizontal',
+                loop: true,
+                // 分页器
+                pagination: {
+                    el: '.swiper-pagination',
+                },
+                // 前进后退按钮
+                navigation: {
+                    nextEl: '.carousel-next-btn',
+                    prevEl: '.carousel-prev-btn',
+                },
+            })
+
+            //导航详细信息显示
+            $(".nav-list li,.nav-detail").hover(
+                function () {
+                    $(".nav-detail").show();
+                },
+                function () {
+                    $(".nav-detail").hide();
+                }
+            )
+
+            //返回顶部
+            $(".fixed-nav li:last").click(function () {
+                $("html,body").stop().animate({ scrollTop: 0 }, 1000);
+            })
+
+            //下滑固定头部
+            $(window).scroll(function () {
+                if ($(this).scrollTop() >= 500) {
+                    $(".m-header-fix").addClass("m-header-fixed");
+                    $(".nav-part").show();
+                    $(".m-kind").find(".nav-part").on("mouseover", function () {
+                        $(".nav-container").addClass("nav-container-fix").show(200);
+                    });
+                    $(".m-kind").find(".nav-part").on("mouseout", function () {
+                        $(".nav-container").removeClass("nav-container-fix");
+                    });
+                } else {
+                    $(".m-header-fix").removeClass("m-header-fixed");
+                    $(".nav-part").hide();
+                }
+                var index = Math.round(($(this).scrollTop() - 1000) / 600);
+                $("#LoutiNav ul li:not(last)").eq(index).addClass("hover").siblings().removeClass("hover")
+            })
+        })
+    })
+})

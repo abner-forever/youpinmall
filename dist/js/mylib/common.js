@@ -1,1 +1,99 @@
-define(["jquery"],function(){return{setCookie(a,b,c,e){switch(arguments.length){case 0:case 1:throw new Error("\u53C2\u6570\u9519\u8BEF");case 2:{document.cookie=a+"="+b;break};case 3:{var f=arguments[2];if("number"==typeof f){var g=new Date;g.setSeconds(g.getSeconds()+f),document.cookie=a+"="+b+"; expires="+g}else"string"==typeof f&&(document.cookie=a+"="+b+"; path="+f)};case 4:{var g=new Date;g.setSeconds(g.getSeconds()+c),document.cookie=a+"="+b+"; expires="+g+"; path="+e}}},getCookie(a){for(var b,c=document.cookie,d=c.split("; "),e=0;e<d.length;e++)if(b=d[e].split("="),b[0]==a)return b[1]},getCookieValue(a){var a=escape(a),b=document.cookie;console.log(typeof b),a+="=";var c=b.indexOf(a);if(-1!=c){var d=c+a.length,e=b.indexOf(";",d);-1==e&&(e=b.length);var f=b.substring(d,e);return unescape(f)}return""},debounce(a,b,c){var d=null;return function(){clearTimeout(d),d=setTimeout(()=>{a.call(c)},b)}},throttle(a,b,c){var d=0;return function(f){var e=new Date().getTime();e-d>b&&(a.call(c,f),d=new Date().getTime())}},randomInt(a,b){return parseInt(Math.random()*(b-a)+a)},randomColor(){var a=parseInt(255*Math.random()),c=parseInt(255*Math.random()),d=parseInt(255*Math.random());return"rgb("+a+","+c+","+d+")"}}});
+define(["jquery"], function ($) {
+    return {
+        //设置cookie
+        setCookie(key, value, expires, path) {
+            switch (arguments.length) {
+                case 0:
+                case 1:
+                    throw new Error("参数错误");
+                case 2:
+                    {
+                        document.cookie = key + "=" + value;
+                        break;
+                    };
+                case 3:
+                    {
+                        var param = arguments[2];
+                        if (typeof (param) == "number") {
+                            var d = new Date();
+                            d.setSeconds(d.getSeconds() + param);
+                            document.cookie = key + "=" + value + "; expires=" + d;
+                        } else if (typeof (param) == "string") {
+                            document.cookie = key + "=" + value + "; path=" + param;
+
+                        }
+                    };
+                case 4:
+                    {
+                        var d = new Date();
+                        d.setSeconds(d.getSeconds() + expires);
+                        document.cookie = key + "=" + value + "; expires=" + d + "; path=" + path;
+                    }
+            }
+
+
+        },
+        //获取Cookie
+        getCookie(key) {
+            var cookier = document.cookie;
+            var list = cookier.split("; ");
+            for (var i = 0; i < list.length; i++) {
+                var ke = list[i].split("=");
+                if (ke[0] == key) return ke[1];
+            }
+        },
+
+        getCookieValue(name){
+        var name = escape(name);  //name为指定的名称
+        var allcookies = document.cookie;
+        console.log(typeof(allcookies));
+        
+        name += "=";
+        var pos = allcookies.indexOf(name);
+        if (pos != -1) {
+            var start = pos + name.length;
+            var end = allcookies.indexOf(";", start);
+            //这里是根据;分隔符来分隔出该名称的值，如果在设置Cookie时用的是,分隔，请替换成相应符号。
+            if (end == -1) {
+                end = allcookies.length;
+            }
+            var value = allcookies.substring(start, end);
+            return unescape(value);
+        } else {
+            return "";
+        }
+    },
+    //防抖
+    debounce(callback, delay, context) {
+        var timer = null;
+        return function () {
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                callback.call(context)
+            }, delay);
+        }
+    },
+    //节流
+    throttle(callback, duration, context) { //回调函数 间隔时间 操作区域
+        var lasttime = 0;
+        return function (e) {
+            var now = new Date().getTime();
+            if (now - lasttime > duration) { //第一次一定会执行
+                callback.call(context, e); //用调这个函数来调用回调函数
+                lasttime = new Date().getTime(); //更新时间             
+            }
+        }
+    },
+    //随机数
+    randomInt(min, max) {
+        return parseInt(Math.random() * (max - min) + min);
+    },
+    //随机颜色
+    randomColor() {
+        var r = parseInt(Math.random() * 255);
+        var g = parseInt(Math.random() * 255);
+        var b = parseInt(Math.random() * 255);
+        return "rgb(" + r + "," + g + "," + b + ")";
+    }
+}
+});
