@@ -9,7 +9,7 @@
                 <div class="m-product-list">
                     <!-- products[i].data.items.length --> 
                     <%for(var j=0;j<4;j++){%>
-                    <div class="m-product-item-container" data-src="/detail?gid=<%=products[i].data.items[j].gid%>" data-target="_blank">
+                    <div class="m-product-item-container" data-src="<%=products[i].data.items[j].gid%>" data-target="_blank">
                             <div class="m-product-image">
                                 <img src="<%=products[i].data.items[j].imgs.img800%>"
                                     alt="">

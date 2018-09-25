@@ -94,6 +94,20 @@ require(["conf/config"], function () {
                     window.open("pages/detail/detail.html", "_blank");
 
                 })
+                //  //跳转详情页
+                //  $("body").on("click", ".m-product-item-container", function () {
+                //     // var gid = $(this).attr("data-src");
+                //     var detail = [];
+                //     var gid = $(this).attr("data-src");
+                //     var obj = {
+                //         "gid" : gid
+                //     }
+                //     detail.pop();
+                //     detail.push(obj);
+                //     var str = JSON.stringify(detail);
+                //     document.cookie = "detail=" + str + ";path=" + "/";
+                //     window.open("pages/detail/detail.html", "_blank");
+                // })
             })
 
             //轮播图插件
