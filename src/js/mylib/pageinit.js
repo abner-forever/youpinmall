@@ -1,7 +1,5 @@
 define(["jquery","common"], function($) {
-    
     $(function(){
-        
         //加载购物车cookie
         var list = [];
         let userlist = [];
@@ -35,7 +33,6 @@ define(["jquery","common"], function($) {
                 })
                 //退出登录
                 $(".logout").click(function () {
-                    console.log("out");
                     var d = new Date();
                     d.setDate(d.getDate() - 999);
                     document.cookie = "userlist=" + userstr + ";expires=" + d + ";path=/";

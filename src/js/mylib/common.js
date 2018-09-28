@@ -42,7 +42,7 @@ define(["jquery"], function ($) {
                 if (ke[0] == key) return ke[1];
             }
         }
-        function getCookieValue(name) {
+        getCookieValue = function (name) {
             var name = escape(name);  //name为指定的名称
             var allcookies = document.cookie;
             console.log(typeof (allcookies));
@@ -63,7 +63,7 @@ define(["jquery"], function ($) {
             }
         }
         //防抖
-        function debounce(callback, delay, context) {
+        debounce = function (callback, delay, context) {
             var timer = null;
             return function () {
                 clearTimeout(timer);
@@ -73,7 +73,7 @@ define(["jquery"], function ($) {
             }
         }
         //节流
-        function throttle(callback, duration, context) { //回调函数 间隔时间 操作区域
+        throttle = function (callback, duration, context) { //回调函数 间隔时间 操作区域
             var lasttime = 0;
             return function (e) {
                 var now = new Date().getTime();
@@ -84,11 +84,11 @@ define(["jquery"], function ($) {
             }
         }
         //随机数
-        function randomInt(min, max) {
+        randomInt = function (min, max) {
             return parseInt(Math.random() * (max - min) + min);
         }
         //随机颜色
-        function randomColor() {
+        randomColor = function () {
             var r = parseInt(Math.random() * 255);
             var g = parseInt(Math.random() * 255);
             var b = parseInt(Math.random() * 255);

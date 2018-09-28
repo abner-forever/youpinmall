@@ -8,6 +8,7 @@ require(["../../js/conf/config"], function () {
             if (detailstr) {
                 detail = JSON.parse(detailstr); //将cookie转换成数组
             }
+            let gid = detail[0].gid;
             var list = [];
             var liststr = getCookie("list");
             if (liststr) {
@@ -23,6 +24,20 @@ require(["../../js/conf/config"], function () {
             $.each(list, function (index, value) {
                 totalcount += value.count;
             })
+            
+        //   //  加载真实信息
+        //     $.ajax({
+        //         url: "https:youpin.mi.com/detail?gid="+gid,
+        //         dataType : "jsonp",
+        //         success : function(data){
+        //             console.log(data);
+                    
+        //         }
+        //     })
+
+
+
+
             //加载详情信息
             $(".detail-container").load("/pages/templates/shopdetail.html", function () {
                 var detailhtm = template("shopdetail", {

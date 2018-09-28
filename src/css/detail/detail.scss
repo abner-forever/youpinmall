@@ -353,5 +353,52 @@
             }
         }
     }
-    
+    .detail-content{
+        overflow: hidden;
+        .info{
+            width: 774px;
+            .nav-title{
+                width: 774px;
+                background-color: #e7e7e7;
+                z-index: 5;
+                .info-nav{
+                    height: 13px;
+                    overflow: hidden;
+                    padding: 16px 0 13px;
+                }
+                .info-nav-item{
+                    float: left;
+                    height: 13px;
+                    width: 128px;
+                    border-right-width: 1px;
+                    border-right-style: solid;
+                    line-height: 13px;
+                    font-size: 13px;
+                    text-align: center;
+                    cursor: pointer;
+                }
+                .nav-arr-container {
+                    
+                    height: 2px;
+                    position: relative;
+                    .nav-arr {
+                        width: 128px;
+                        position: absolute;
+                        height: 2px;
+                        background-color: #845f3f;
+                        -webkit-transition: left .2s linear;
+                        -o-transition: left .2s linear;
+                        transition: left .2s linear;
+                    }
+                }
+            }
+            .main-body{
+                img {
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                }
+            }
+        }
+    }
 }
